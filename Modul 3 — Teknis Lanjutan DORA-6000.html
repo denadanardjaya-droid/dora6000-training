@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///Users/cepimaryadi/Downloads/Modul3_Teknis_DORA6000.html -->
+<html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 3 — Teknis Lanjutan DORA-6000</title>
+<link href="./Modul 3 — Teknis Lanjutan DORA-6000_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0f0e0b;
+  --bg2:    #161410;
+  --bg3:    #1e1b14;
+  --bg4:    #252118;
+  --panel:  #1a1710;
+  --amber:  #f0a500;
+  --amber2: #e09000;
+  --amber-pale: rgba(240,165,0,0.09);
+  --amber-border: rgba(240,165,0,0.22);
+  --orange: #e06020;
+  --orange-pale: rgba(224,96,32,0.09);
+  --red:    #dc4040;
+  --red-pale: rgba(220,64,64,0.09);
+  --green:  #3dba80;
+  --green-pale: rgba(61,186,128,0.09);
+  --green-border: rgba(61,186,128,0.22);
+  --blue:   #4a9eff;
+  --blue-pale: rgba(74,158,255,0.09);
+  --slate:  #8090a8;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text:   #d8d0c0;
+  --muted:  #7a7060;
+  --dim:    #3d3828;
+  --white:  #f0ebe0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:15px;
+  line-height:1.65;
+}
+
+/* HERO */
+.hero{
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:52px 52px 44px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(240,165,0,0.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--amber),transparent);
+  opacity:0.3;
+}
+.crumb{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--muted);
+  letter-spacing:0.08em;margin-bottom:20px;
+}
+.crumb span{color:var(--amber);}
+h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(36px,5vw,60px);
+  font-weight:700;
+  color:var(--white);
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  margin-bottom:14px;
+}
+h1 em{font-style:normal;color:var(--amber);}
+.hero-p{font-size:15px;color:var(--muted);max-width:580px;line-height:1.7;margin-bottom:36px;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  padding:4px 12px;border-radius:20px;border:1px solid;letter-spacing:0.04em;
+}
+.p-amber{color:var(--amber);border-color:var(--amber-border);background:var(--amber-pale);}
+.p-green{color:var(--green);border-color:var(--green-border);background:var(--green-pale);}
+.p-blue{color:var(--blue);border-color:rgba(74,158,255,0.25);background:var(--blue-pale);}
+
+/* NAV */
+.nav{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0 52px;display:flex;gap:0;
+  position:sticky;top:0;z-index:100;overflow-x:auto;
+}
+.nav::-webkit-scrollbar{display:none;}
+.nv{
+  padding:14px 16px;font-size:13px;font-weight:500;
+  color:var(--muted);cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .2s;
+  white-space:nowrap;user-select:none;font-family:'Barlow',sans-serif;
+}
+.nv:hover{color:var(--amber);}
+.nv.active{color:var(--amber);border-bottom-color:var(--amber);}
+
+/* MAIN */
+.main{max-width:980px;margin:0 auto;padding:44px 32px 100px;}
+
+/* SECTION */
+.sec{margin-bottom:56px;animation:fadeUp .4s ease both;}
+.sec:nth-child(2){animation-delay:.07s}
+.sec:nth-child(3){animation-delay:.14s}
+.sec:nth-child(4){animation-delay:.21s}
+.sec:nth-child(5){animation-delay:.28s}
+.sec:nth-child(6){animation-delay:.35s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-hdr{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;}
+.sec-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);
+  background:var(--amber-pale);border:1px solid var(--amber-border);
+  border-radius:6px;padding:4px 10px;margin-top:5px;
+  white-space:nowrap;letter-spacing:0.06em;
+}
+.sec-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:26px;font-weight:700;color:var(--white);line-height:1.15;letter-spacing:0.01em;
+}
+.sec-sub{font-size:13px;color:var(--muted);margin-top:5px;}
+
+/* SEPARATOR */
+.sep{height:1px;background:var(--border);margin:44px 0;}
+
+/* CARD */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:16px;}
+.card-sm{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:18px 20px;}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.tb{
+  padding:7px 16px;border-radius:8px;border:1px solid var(--border2);
+  background:var(--bg3);color:var(--muted);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .18s;font-family:'Barlow',sans-serif;
+}
+.tb:hover{border-color:var(--amber-border);color:var(--amber);}
+.tb.active{background:var(--amber-pale);color:var(--amber);border-color:var(--amber-border);}
+.tpanel{display:none;}
+.tpanel.active{display:block;}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+/* STEPPER */
+.stepper{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:16px;position:relative;}
+.step:not(:last-child)::after{
+  content:'';position:absolute;
+  left:17px;top:38px;bottom:0;
+  width:1px;background:var(--border2);
+}
+.snum{
+  width:34px;height:34px;border-radius:50%;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  position:relative;z-index:1;border:1.5px solid;
+}
+.sn-amber{color:var(--amber);background:var(--amber-pale);border-color:var(--amber-border);}
+.sn-red{color:var(--red);background:var(--red-pale);border-color:rgba(220,64,64,0.3);}
+.sn-green{color:var(--green);background:var(--green-pale);border-color:var(--green-border);}
+.sn-done{background:var(--amber);border-color:var(--amber);color:var(--bg);font-size:14px;}
+.sbody{padding-bottom:24px;flex:1;}
+.stitle{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;padding-top:7px;}
+.sdesc{font-size:13px;color:var(--muted);line-height:1.65;}
+.snote{
+  margin-top:8px;padding:7px 12px;border-radius:7px;
+  font-size:12px;line-height:1.55;border-left:2px solid;
+}
+.na{border-color:var(--amber);background:var(--amber-pale);color:#c87800;}
+.nr{border-color:var(--red);background:var(--red-pale);color:#b03030;}
+.ng{border-color:var(--green);background:var(--green-pale);color:#2a8a60;}
+.nb{border-color:var(--blue);background:var(--blue-pale);color:#2a6ab0;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{
+  background:var(--bg4);color:var(--muted);padding:10px 14px;
+  text-align:left;font-size:11px;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.tbl td{
+  padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);
+  color:var(--text);vertical-align:top;
+}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--bg4);}
+
+/* BADGES */
+.badge{
+  display:inline-block;font-size:10px;font-weight:600;
+  padding:2px 8px;border-radius:10px;
+  font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;border:1px solid;
+}
+.ba{color:var(--amber);background:var(--amber-pale);border-color:var(--amber-border);}
+.br{color:var(--red);background:var(--red-pale);border-color:rgba(220,64,64,0.25);}
+.bg{color:var(--green);background:var(--green-pale);border-color:var(--green-border);}
+.bb{color:var(--blue);background:var(--blue-pale);border-color:rgba(74,158,255,0.25);}
+.bs{color:var(--slate);background:rgba(128,144,168,0.08);border-color:rgba(128,144,168,0.2);}
+
+/* PM SCHEDULE */
+.pm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.pm-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:16px;
+}
+.pm-freq{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px;font-weight:700;color:var(--amber);
+  margin-bottom:10px;
+}
+.pm-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.pm-list li{font-size:12px;color:var(--muted);padding-left:14px;position:relative;}
+.pm-list li::before{content:'·';position:absolute;left:4px;color:var(--amber);font-weight:700;}
+
+/* HYDRAULIC DIAGRAM */
+.hyd-wrap{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:12px;padding:20px;overflow-x:auto;
+}
+.component-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin-bottom:16px;
+}
+.comp-card{
+  background:var(--bg4);border:1px solid var(--border);
+  border-radius:9px;padding:14px;
+}
+.comp-id{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--amber);background:var(--amber-pale);
+  border:1px solid var(--amber-border);border-radius:4px;
+  padding:2px 7px;display:inline-block;margin-bottom:8px;
+}
+.comp-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;}
+.comp-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* ERROR CODE TABLE */
+.err-row{cursor:pointer;}
+.err-detail{
+  display:none;
+  background:var(--bg4);
+  padding:12px 14px;
+  border-top:1px solid var(--border);
+}
+.err-row.open + .err-detail{display:table-row;}
+.err-detail td{
+  padding:10px 14px !important;
+  color:var(--muted) !important;
+  font-size:12px;
+}
+
+/* QUIZ */
+.qbox{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px;}
+.qbox h3{
+  font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;
+  color:var(--white);margin-bottom:22px;letter-spacing:0.02em;
+}
+.qq{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.qq:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0;}
+.qtext{font-size:14px;font-weight:600;color:var(--white);margin-bottom:12px;}
+.qopts{display:flex;flex-direction:column;gap:7px;}
+.qopt{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:8px;border:1px solid var(--border2);
+  cursor:pointer;font-size:13px;color:var(--muted);
+  background:var(--bg3);transition:all .15s;user-select:none;
+}
+.qopt:hover{border-color:var(--amber-border);color:var(--amber);}
+.qopt.correct{background:var(--green-pale);border-color:var(--green-border);color:var(--green);font-weight:500;}
+.qopt.wrong{background:var(--red-pale);border-color:rgba(220,64,64,0.3);color:var(--red);}
+.qltr{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--bg4);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:600;flex-shrink:0;
+  font-family:'JetBrains Mono',monospace;
+}
+.qfb{margin-top:9px;font-size:12px;padding:8px 13px;border-radius:8px;display:none;}
+.qfb.show{display:block;}
+.qfb.correct{background:var(--green-pale);color:#2a8a60;border:1px solid var(--green-border);}
+.qfb.wrong{background:var(--red-pale);color:#b03030;border:1px solid rgba(220,64,64,0.25);}
+
+/* SUMMARY */
+.sum-final{
+  background:var(--bg2);border:1px solid var(--border);
+  border-top:2px solid var(--amber);border-radius:14px;padding:32px 36px;
+}
+.sum-final h2{
+  font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;
+  color:var(--amber);margin-bottom:20px;letter-spacing:0.02em;
+}
+.sg{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.sb h4{
+  font-size:11px;font-weight:700;color:var(--amber);
+  text-transform:uppercase;letter-spacing:0.07em;margin-bottom:9px;
+}
+.sb ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.sb ul li{font-size:12px;color:var(--muted);padding-left:14px;position:relative;}
+.sb ul li::before{content:'·';position:absolute;left:4px;color:var(--amber);font-weight:700;}
+
+/* NEXT */
+.nxt-wrap{text-align:center;margin-top:32px;}
+.nxt-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--amber);color:var(--bg);
+  border:none;border-radius:10px;padding:13px 26px;
+  font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;
+  font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;
+  text-decoration:none;
+}
+.nxt-btn:hover{background:#ffc030;transform:translateY(-1px);}
+.nxt-btn svg{width:16px;height:16px;}
+
+/* MONO inline */
+.mono{font-family:'JetBrains Mono',monospace;font-size:12px;}
+.val-amber{color:var(--amber);}
+.val-green{color:var(--green);}
+.val-red{color:var(--red);}
+.val-blue{color:var(--blue);}
+.val-white{color:var(--white);}
+
+/* Code block */
+.code-block{
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--text);line-height:1.8;overflow-x:auto;
+}
+
+@media(max-width:700px){
+  .hero,.nav{padding-left:20px;padding-right:20px;}
+  .main{padding:28px 16px 60px;}
+  .g2,.g3,.sg,.pm-grid,.component-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="crumb">VITAL HEALTHCARE · DORA-6000 · <span>MODUL 3</span></div>
+  <h1>Teknis<br><em>Lanjutan</em></h1>
+  <p class="hero-p">Masuk ke dalam mesin — sirkuit hidraulik, cara kerja balance chamber, pompa keramik UF, diagram valve real-time, jadwal preventive maintenance, dan troubleshooting error code.</p>
+  <div class="pills">
+    <span class="pill p-amber">6 Sesi Teknis</span>
+    <span class="pill p-green">Valve Map Interaktif</span>
+    <span class="pill p-blue">Troubleshooting Guide</span>
+    <span class="pill p-amber">PM Schedule Lengkap</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nv active" onclick="goSec(&#39;s1&#39;,this)">3.1 Sirkuit Hidraulik</div>
+  <div class="nv" onclick="goSec(&#39;s2&#39;,this)">3.2 Balance Chamber</div>
+  <div class="nv" onclick="goSec(&#39;s3&#39;,this)">3.3 Pompa UF Keramik</div>
+  <div class="nv" onclick="goSec(&#39;s4&#39;,this)">3.4 Diagram Valve</div>
+  <div class="nv" onclick="goSec(&#39;s5&#39;,this)">3.5 Preventive Maintenance</div>
+  <div class="nv" onclick="goSec(&#39;s6&#39;,this)">3.6 Troubleshooting</div>
+  <div class="nv" onclick="goSec(&#39;s7&#39;,this)">3.7 Latihan</div>
+</div>
+
+<div class="main">
+
+<!-- ===== 3.1 SIRKUIT HIDRAULIK ===== -->
+<div class="sec" id="s1">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.1</span>
+    <div>
+      <div class="sec-title">Desain Sirkuit Hidraulik DORA-6000</div>
+      <div class="sec-sub">Arsitektur aliran dialisat dari air masuk hingga drain — memahami mengapa setiap komponen ada di posisinya</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:13px;color:var(--muted);line-height:1.7">Sirkuit hidraulik DORA-6000 dirancang dengan prinsip <strong style="color:var(--white)">pemisahan total antara jalur listrik dan jalur cairan</strong>. Kabinet dapat dibuka dengan 3 cara berbeda untuk akses maintenance. Desain ini menggunakan <strong style="color:var(--amber)">pompa peristaltik ganda (A+B independen)</strong> untuk mixing konsentrat dan <strong style="color:var(--amber)">pompa keramik</strong> untuk kontrol ultrafiltrasi.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tb active" onclick="showT(&#39;hyd&#39;,&#39;h-alur&#39;)">Alur lengkap</button>
+    <button class="tb" onclick="showT(&#39;hyd&#39;,&#39;h-mixing&#39;)">Mixing konsentrat</button>
+    <button class="tb" onclick="showT(&#39;hyd&#39;,&#39;h-temp&#39;)">Kontrol suhu</button>
+    <button class="tb" onclick="showT(&#39;hyd&#39;,&#39;h-bypass&#39;)">Sistem bypass</button>
+  </div>
+
+  <!-- Alur lengkap -->
+  <div id="h-alur" class="tpanel active">
+    <div class="hyd-wrap">
+      <svg width="100%" viewBox="0 0 880 260" style="min-width:700px;display:block">
+        <defs>
+          <marker id="aw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#f0a500" stroke-width="1.5" stroke-linecap="round"></path>
+          </marker>
+          <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"></path>
+          </marker>
+          <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round"></path>
+          </marker>
+        </defs>
+        <!-- Row 1: water supply chain -->
+        <rect x="10" y="30" width="100" height="48" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1"></rect>
+        <text x="60" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">RO Water</text>
+        <text x="60" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">1–3 bar, 5–30°C</text>
+
+        <line x1="112" y1="54" x2="138" y2="54" stroke="#4a9eff" stroke-width="1.5" marker-end="url(#ab)"></line>
+
+        <rect x="140" y="30" width="100" height="48" rx="8" fill="rgba(240,165,0,0.08)" stroke="#f0a500" stroke-width="1"></rect>
+        <text x="190" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">WF01 Filter</text>
+        <text x="190" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">filter mekanik inlet</text>
+
+        <line x1="242" y1="54" x2="268" y2="54" stroke="#f0a500" stroke-width="1.5" marker-end="url(#aw)"></line>
+
+        <rect x="270" y="30" width="100" height="48" rx="8" fill="rgba(240,165,0,0.08)" stroke="#f0a500" stroke-width="1"></rect>
+        <text x="320" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">PR01 Regulator</text>
+        <text x="320" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">regulasi tekanan</text>
+
+        <line x1="372" y1="54" x2="398" y2="54" stroke="#f0a500" stroke-width="1.5" marker-end="url(#aw)"></line>
+
+        <rect x="400" y="30" width="100" height="48" rx="8" fill="rgba(240,165,0,0.08)" stroke="#f0a500" stroke-width="1"></rect>
+        <text x="450" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">HX01 Heat Exch.</text>
+        <text x="450" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">preheat air masuk</text>
+
+        <line x1="502" y1="54" x2="528" y2="54" stroke="#f0a500" stroke-width="1.5" marker-end="url(#aw)"></line>
+
+        <rect x="530" y="30" width="100" height="48" rx="8" fill="rgba(61,186,128,0.08)" stroke="#3dba80" stroke-width="1"></rect>
+        <text x="580" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">Heater</text>
+        <text x="580" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">35–39°C target</text>
+
+        <line x1="632" y1="54" x2="658" y2="54" stroke="#3dba80" stroke-width="1.5" marker-end="url(#ag)"></line>
+
+        <rect x="660" y="30" width="100" height="48" rx="8" fill="rgba(61,186,128,0.08)" stroke="#3dba80" stroke-width="1"></rect>
+        <text x="710" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">Conductivity</text>
+        <text x="710" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">sensor final cond.</text>
+
+        <line x1="762" y1="54" x2="788" y2="54" stroke="#3dba80" stroke-width="1.5" marker-end="url(#ag)"></line>
+
+        <rect x="790" y="30" width="80" height="48" rx="8" fill="rgba(61,186,128,0.12)" stroke="#3dba80" stroke-width="1.5"></rect>
+        <text x="830" y="50" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#3dba80">Dializer</text>
+        <text x="830" y="67" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#3dba80">dialisat masuk</text>
+
+        <!-- Row 2: mixing -->
+        <text x="190" y="120" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#7a7060">Konsentrat A</text>
+        <rect x="140" y="128" width="100" height="38" rx="6" fill="rgba(240,165,0,0.06)" stroke="#f0a500" stroke-width="0.8"></rect>
+        <text x="190" y="143" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">GP01 Pump A</text>
+        <text x="190" y="157" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">peristaltik independen</text>
+        <line x1="190" y1="128" x2="190" y2="80" stroke="#f0a500" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#aw)"></line>
+
+        <text x="320" y="120" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#7a7060">Bikarbonat B</text>
+        <rect x="270" y="128" width="100" height="38" rx="6" fill="rgba(240,165,0,0.06)" stroke="#f0a500" stroke-width="0.8"></rect>
+        <text x="320" y="143" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">GP02 Pump B</text>
+        <text x="320" y="157" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">BICART cartridge</text>
+        <line x1="320" y1="128" x2="320" y2="80" stroke="#f0a500" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#aw)"></line>
+
+        <!-- Row 3: dializer outlet -->
+        <line x1="830" y1="78" x2="830" y2="160" stroke="#3dba80" stroke-width="1.5" marker-end="url(#ag)"></line>
+        <rect x="780" y="162" width="100" height="38" rx="6" fill="rgba(61,186,128,0.06)" stroke="#3dba80" stroke-width="0.8"></rect>
+        <text x="830" y="177" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">ET01 Endotoxin</text>
+        <text x="830" y="191" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">filter ultrapur</text>
+
+        <line x1="780" y1="181" x2="664" y2="181" stroke="#3dba80" stroke-width="1.5" marker-end="url(#ag)"></line>
+        <rect x="560" y="162" width="102" height="38" rx="6" fill="rgba(240,165,0,0.06)" stroke="#f0a500" stroke-width="0.8"></rect>
+        <text x="611" y="177" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">Balance Chamber</text>
+        <text x="611" y="191" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">volumetrik kontrol</text>
+
+        <line x1="560" y1="181" x2="494" y2="181" stroke="#f0a500" stroke-width="1.5" marker-end="url(#aw)"></line>
+        <rect x="390" y="162" width="102" height="38" rx="6" fill="rgba(240,165,0,0.06)" stroke="#f0a500" stroke-width="0.8"></rect>
+        <text x="441" y="177" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">UF Pump Keramik</text>
+        <text x="441" y="191" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">0–3600 mL/jam ±1%</text>
+
+        <line x1="390" y1="181" x2="314" y2="181" stroke="#888" stroke-width="1.5" marker-end="url(#ag)"></line>
+        <rect x="210" y="162" width="102" height="38" rx="6" fill="rgba(128,144,168,0.06)" stroke="#8090a8" stroke-width="0.8"></rect>
+        <text x="261" y="177" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">BLDP Blood Leak</text>
+        <text x="261" y="191" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">≤0.35 mL/min</text>
+
+        <line x1="210" y1="181" x2="144" y2="181" stroke="#888" stroke-width="1.5" marker-end="url(#ag)"></line>
+        <rect x="40" y="162" width="102" height="38" rx="6" fill="rgba(128,144,168,0.06)" stroke="#8090a8" stroke-width="0.8"></rect>
+        <text x="91" y="177" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" font-weight="600" fill="#f0ebe0">Drain</text>
+        <text x="91" y="191" text-anchor="middle" font-family="Barlow,sans-serif" font-size="10" fill="#7a7060">dialisat terpakai</text>
+
+        <text x="440" y="240" text-anchor="middle" font-family="Barlow,sans-serif" font-size="11" fill="#7a7060">
+          Jalur biru = air masuk (dingin)  ·  Jalur oranye = proses mixing &amp; pemanasan  ·  Jalur hijau = dialisat siap  ·  Jalur abu = outlet &amp; drain
+        </text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Mixing konsentrat -->
+  <div id="h-mixing" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;color:var(--amber);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;font-weight:600">Pompa A — Konsentrat Asam (Elektrolit)</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum sn-amber">A</div>
+            <div class="sbody">
+              <div class="stitle">Penyerapan dari port biru</div>
+              <div class="sdesc">Pompa peristaltik GP01 menyedot konsentrat A melalui port penyerapan biru. Laju diatur secara proporsional terhadap dialysate flow rate.</div>
+              <div class="snote na">Konsentrat A berisi: NaCl, CaCl₂, MgCl₂, asam asetat, KCl</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-amber">→</div>
+            <div class="sbody">
+              <div class="stitle">Injeksi ke jalur air utama</div>
+              <div class="sdesc">Konsentrat A diinjeksikan ke aliran air RO. Sensor konduktivitas pertama (CS01) memverifikasi konsentrasi awal setelah mixing A.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;color:var(--amber);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;font-weight:600">Pompa B — Bikarbonat (BICART)</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum sn-amber">B</div>
+            <div class="sbody">
+              <div class="stitle">Penyerapan dari cartridge B-20H</div>
+              <div class="sdesc">Pompa GP02 melarutkan bubuk bikarbonat dari cartridge BICART B-20H. Proses dissolution terjadi di dalam cartridge dengan air RO.</div>
+              <div class="snote ng">BICART eliminasi risiko kontaminasi dibanding bikarbonat cair — lebih steril, lebih konsisten</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-amber">→</div>
+            <div class="sbody">
+              <div class="stitle">Mixing akhir + verifikasi</div>
+              <div class="sdesc">Larutan bikarbonat digabungkan dengan stream A+air. Sensor konduktivitas akhir (CS02/FinalCond) memverifikasi komposisi total sebelum dialisat masuk ke heater.</div>
+              <div class="snote na">Target FinalCond: 13.5–14.5 mS/cm (bergantung resep dokter)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:12px;">Perbedaan Fixed Ratio vs Custom Ratio di level hardware</div>
+      <table class="tbl" style="background:transparent">
+        <tbody><tr><th>Aspek</th><th>Fixed Ratio</th><th>Custom Ratio</th></tr>
+        <tr><td>Kontrol pompa</td><td style="color:var(--green)">Otomatis oleh algoritma mesin</td><td style="color:var(--amber)">Manual — operator set laju pompa A dan B</td></tr>
+        <tr><td>Input operator</td><td>Target TotalNa+ (mmol/L)</td><td>Laju pompa A dan B (mL/min)</td></tr>
+        <tr><td>Akurasi</td><td style="color:var(--green)">Lebih konsisten — diverifikasi sensor</td><td style="color:var(--amber)">Bergantung setting operator</td></tr>
+        <tr><td>Risiko error</td><td style="color:var(--green)">Rendah</td><td style="color:var(--red)">Lebih tinggi — perlu verifikasi ketat</td></tr>
+        <tr><td>Digunakan untuk</td><td>Treatment standar sehari-hari</td><td>Formulasi khusus atas instruksi dokter</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <!-- Kontrol suhu -->
+  <div id="h-temp" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;color:var(--amber);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;">Jalur pemanasan — 2 tahap</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum sn-amber">1</div>
+            <div class="sbody">
+              <div class="stitle">Heat Exchanger HX01 (pre-heat)</div>
+              <div class="sdesc">Air RO dingin masuk melalui heat exchanger yang memanfaatkan panas dari dialisat terpakai yang keluar. Efisiensi energi tinggi — mengurangi beban heater utama.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-amber">2</div>
+            <div class="sbody">
+              <div class="stitle">Heater elektrik utama</div>
+              <div class="sdesc">Heater elemen listrik menaikkan suhu ke target 35–39°C yang diset operator. Sensor suhu TT01 dan TT03 memantau secara real-time.</div>
+              <div class="snote na">Toleransi suhu: ±0.5°C dari set point. Di luar range → alarm suhu + bypass otomatis aktif</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-done">✓</div>
+            <div class="sbody">
+              <div class="stitle">Temperatur dialisat stabil ke dializer</div>
+              <div class="sdesc">Dialisat pada suhu fisiologis (default 36.5°C) mengalir ke sisi dialisat dializer. Suhu dingin dapat digunakan sebagai cool dialysis untuk pasien hipertermi.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;color:var(--amber);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;">Parameter suhu kunci</div>
+        <table class="tbl" style="background:transparent">
+          <tbody><tr><th>Parameter</th><th>Nilai</th></tr>
+          <tr><td>Setting range</td><td><span class="val-amber mono">35 – 39°C</span></td></tr>
+          <tr><td>Default klinik</td><td><span class="mono val-white">36.5°C</span></td></tr>
+          <tr><td>Cool dialysis</td><td><span class="mono val-blue">35 – 36°C</span></td></tr>
+          <tr><td>Alarm batas bawah</td><td><span class="mono val-red">&lt;35°C → bypass</span></td></tr>
+          <tr><td>Alarm batas atas</td><td><span class="mono val-red">&gt;40°C → bypass</span></td></tr>
+          <tr><td>Akurasi sensor</td><td><span class="mono val-green">±0.5°C</span></td></tr>
+          <tr><td>Hot disinfeksi</td><td><span class="mono val-amber">85°C (mode khusus)</span></td></tr>
+        </tbody></table>
+        <div class="snote na" style="margin-top:12px;">Manfaat Cool Dialysis: membantu pasien dengan intradialytic hypotension (IDH) — suhu rendah meningkatkan toleransi hemodinamik</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bypass -->
+  <div id="h-bypass" class="tpanel">
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:8px;">Apa itu Bypass?</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7">Saat parameter dialisat di luar batas aman (konduktivitas salah, suhu ekstrim, atau blood leak terdeteksi), mesin secara otomatis mengaktifkan <strong style="color:var(--amber)">bypass valve (BYC1)</strong>. Dialisat dialihkan langsung ke drain tanpa melewati dializer — darah pasien tetap mengalir tapi TIDAK terpapar dialisat yang berbahaya. Pasien aman, treatment dihentikan sementara.</p>
+    </div>
+    <div class="g2">
+      <div>
+        <div style="font-size:12px;color:var(--amber);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">Kondisi yang memicu bypass otomatis</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="snote nr">Konduktivitas dialisat di luar batas (±0.5 mS/cm dari target)</div>
+          <div class="snote nr">Suhu dialisat &lt;35°C atau &gt;40°C</div>
+          <div class="snote nr">Blood leak terdeteksi (≥0.35 mL/min)</div>
+          <div class="snote na">Saat mesin baru menyala — menunggu kondisi stabil</div>
+          <div class="snote na">Operator menekan tombol Bypass manual di layar</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">Yang terjadi saat bypass aktif</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum sn-amber" style="font-size:10px">BYP</div>
+            <div class="sbody">
+              <div class="stitle">Valve BYC1 terbuka</div>
+              <div class="sdesc">Dialisat dialihkan ke drain, tidak ke dializer. Jalur darah tetap terbuka — blood pump tetap berjalan.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-amber">⚡</div>
+            <div class="sbody">
+              <div class="stitle">Alarm visual + audio aktif</div>
+              <div class="sdesc">Layar menampilkan pesan bypass, buzzer berbunyi, lampu alarm menyala. Operator harus identifikasi penyebab.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sn-done">✓</div>
+            <div class="sbody">
+              <div class="stitle">Resolusi → bypass nonaktif</div>
+              <div class="sdesc">Setelah penyebab diatasi dan parameter kembali normal, mesin otomatis kembali ke mode normal atau operator tekan Reset.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.2 BALANCE CHAMBER ===== -->
+<div class="sec" id="s2">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.2</span>
+    <div>
+      <div class="sec-title">Balance Chamber — Jantung Akurasi UF</div>
+      <div class="sec-sub">Memahami cara mesin memastikan volume dialisat masuk = keluar ± target UF dengan presisi tinggi</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:13px;color:var(--muted);line-height:1.7">Balance Chamber adalah mekanisme inti yang memastikan <strong style="color:var(--white)">keseimbangan volume dialisat</strong>. Prinsipnya: volume dialisat baru yang masuk ke sistem harus sama persis dengan volume dialisat lama yang keluar, kecuali untuk volume yang sengaja diambil sebagai ultrafiltrasi (UF). Ketidakseimbangan berarti pasien kehilangan atau mendapatkan cairan di luar yang direncanakan — berbahaya.</p>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px">
+    <div>
+      <div style="font-size:12px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Cara Kerja Balance Chamber</div>
+      <div class="stepper">
+        <div class="step">
+          <div class="snum sn-amber">1</div>
+          <div class="sbody">
+            <div class="stitle">Chamber dibagi dua ruang oleh membrane fleksibel</div>
+            <div class="sdesc">Ruang sisi "fresh" diisi dialisat baru. Ruang sisi "spent" diisi dialisat terpakai dari dializer. Membran tipis di tengah memisahkan keduanya.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-amber">2</div>
+          <div class="sbody">
+            <div class="stitle">Pergantian berlangsung secara bergantian</div>
+            <div class="sdesc">Saat ruang fresh terisi penuh, valve berganti: fresh mengalir ke dializer, sementara spent dikeluarkan ke drain. Volume yang keluar = volume yang masuk.</div>
+            <div class="snote na">Frekuensi pergantian: beberapa kali per menit — pasien tidak merasakan</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-amber">3</div>
+          <div class="sbody">
+            <div class="stitle">UF pump mengambil "lebih" dari sisi spent</div>
+            <div class="sdesc">Pompa keramik UF sengaja mengeluarkan sedikit lebih banyak dari sisi spent dibanding yang masuk ke fresh — selisih ini adalah volume ultrafiltrasi yang diambil dari pasien.</div>
+            <div class="snote ng">UF = Volume spent keluar − Volume fresh masuk per siklus</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-done">✓</div>
+          <div class="sbody">
+            <div class="stitle">Akurasi ±1% dijamin oleh pompa keramik</div>
+            <div class="sdesc">Pompa keramik berpiston memberikan volume per stroke yang sangat konsisten — tidak bergantung viskositas cairan atau tekanan balik. Ini mengapa UF DORA-6000 sangat presisi.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-sm">
+      <div style="font-size:12px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Kenapa pompa keramik lebih baik?</div>
+      <table class="tbl" style="background:transparent">
+        <tbody><tr><th>Aspek</th><th style="color:#3dba80">Pompa Keramik (DORA)</th><th style="color:#8090a8">Pompa Peristaltik Biasa</th></tr>
+        <tr><td>Mekanisme</td><td style="color:var(--text)">Biston keramik — displacement</td><td style="color:var(--muted)">Rolller menekan selang</td></tr>
+        <tr><td>Akurasi volume</td><td style="color:var(--green)">±1% — sangat presisi</td><td style="color:var(--amber)">±5–10% tergantung kondisi</td></tr>
+        <tr><td>Pengaruh viskositas</td><td style="color:var(--green)">Tidak terpengaruh</td><td style="color:var(--red)">Berpengaruh signifikan</td></tr>
+        <tr><td>Umur pakai</td><td style="color:var(--green)">Sangat panjang (keramik)</td><td style="color:var(--amber)">Selang perlu ganti rutin</td></tr>
+        <tr><td>Cek airtightness</td><td style="color:var(--green)">Otomatis self-check</td><td style="color:var(--muted)">Manual</td></tr>
+      </tbody></table>
+      <div class="snote na" style="margin-top:12px">Klaim komersial kunci: "pompa keramik = akurasi UF ±1% yang tidak bisa ditandingi pompa peristaltik biasa"</div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.3 POMPA UF KERAMIK ===== -->
+<div class="sec" id="s3">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.3</span>
+    <div>
+      <div class="sec-title">Pompa UF Keramik — Detail Teknis</div>
+      <div class="sec-sub">Cara kerja, self-check otomatis, dan cara membaca parameter UF di layar</div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card-sm">
+      <div style="font-size:12px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Siklus Kerja Pompa Keramik</div>
+      <div class="stepper">
+        <div class="step">
+          <div class="snum sn-amber">→</div>
+          <div class="sbody">
+            <div class="stitle">Stroke masuk (intake)</div>
+            <div class="sdesc">Piston keramik bergerak mundur — menciptakan ruang vakum kecil yang menarik cairan masuk dengan volume terukur sangat presisi.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-amber">←</div>
+          <div class="sbody">
+            <div class="stitle">Stroke dorong (discharge)</div>
+            <div class="sdesc">Piston maju mendorong cairan keluar. Karena keramik tidak elastis dan tidak mengembang, volume per stroke konsisten tanpa variasi.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-done">✓</div>
+          <div class="sbody">
+            <div class="stitle">Self-check airtightness otomatis</div>
+            <div class="sdesc">Saat SetUp, mesin secara otomatis menguji kebocoran pompa keramik. Jika airtightness gagal → alarm dan treatment tidak dapat dimulai.</div>
+            <div class="snote na">Jika airtightness fail berulang → hubungi teknisi, kemungkinan seal pompa perlu diganti</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-sm">
+      <div style="font-size:12px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Membaca parameter UF di layar</div>
+      <div style="background:var(--bg);border:1px solid var(--border2);border-radius:10px;padding:16px;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px;margin-bottom:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 14px">
+          <div style="color:var(--muted);font-size:10px">UF Goal</div>
+          <div style="color:var(--blue)">2.00 <span style="font-size:10px;color:var(--muted)">L</span></div>
+          <div style="color:var(--muted);font-size:10px">UF Rate</div>
+          <div style="color:var(--amber)">0.50 <span style="font-size:10px;color:var(--muted)">L/jam</span></div>
+          <div style="color:var(--muted);font-size:10px">UF Removed</div>
+          <div style="color:var(--green)">0.50 <span style="font-size:10px;color:var(--muted)">L</span></div>
+          <div style="color:var(--muted);font-size:10px">UF Remaining</div>
+          <div style="color:var(--white)">1.50 <span style="font-size:10px;color:var(--muted)">L</span></div>
+          <div style="color:var(--muted);font-size:10px">I-UF (isolated)</div>
+          <div style="color:var(--muted)">OFF</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7">
+        <strong style="color:var(--white)">I-UF (Isolated UF)</strong>: mode khusus di mana dialysate flow dihentikan, hanya UF berjalan — digunakan untuk mengeluarkan cairan murni tanpa difusi, berguna pada pasien dengan hemodinamik tidak stabil.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:14px">Parameter UF yang perlu dipantau dan artinya</div>
+    <table class="tbl">
+      <tbody><tr><th>Parameter</th><th>Satuan</th><th>Nilai Normal</th><th>Jika Abnormal</th></tr>
+      <tr>
+        <td><strong>TMP</strong> (Transmembrane Pressure)</td>
+        <td class="mono">mmHg</td>
+        <td><span class="badge bg">50–200 mmHg</span></td>
+        <td>TMP tinggi (&gt;350) → dializer mulai clotting, UF tidak efisien</td>
+      </tr>
+      <tr>
+        <td><strong>UF Rate aktual</strong></td>
+        <td class="mono">mL/jam</td>
+        <td><span class="badge bg">Sesuai setting</span></td>
+        <td>Deviasi &gt;10% dari setting → cek pompa keramik, alarm UF</td>
+      </tr>
+      <tr>
+        <td><strong>UF Removed</strong></td>
+        <td class="mono">L</td>
+        <td><span class="badge bg">Meningkat konstan</span></td>
+        <td>Tidak meningkat → UF pump masalah atau bypass aktif</td>
+      </tr>
+      <tr>
+        <td><strong>UF Goal tercapai</strong></td>
+        <td class="mono">L</td>
+        <td><span class="badge bg">= UF Goal saat selesai</span></td>
+        <td>Kurang dari goal → evaluasi waktu atau naikkan UF rate</td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.4 DIAGRAM VALVE ===== -->
+<div class="sec" id="s4">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.4</span>
+    <div>
+      <div class="sec-title">Diagram Valve &amp; Mode Debug</div>
+      <div class="sec-sub">Memahami peta valve real-time dan cara menggunakan mode Pump Test untuk diagnostik</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:13px;color:var(--muted);line-height:1.7">DORA-6000 memiliki fitur diagnostik canggih: layar mode <strong style="color:var(--white)">Pump Test</strong> menampilkan diagram sirkuit lengkap dengan status setiap valve secara real-time. Teknisi dapat memonitor dan mengontrol setiap komponen secara individual dari layar ini — sangat berguna untuk troubleshooting lapangan.</p>
+  </div>
+
+  <div class="component-grid">
+    <div class="comp-card">
+      <span class="comp-id">V1xx</span>
+      <div class="comp-name">Valve aliran utama</div>
+      <div class="comp-desc">V101–V110: mengatur aliran air RO, konsentrat, dan dialisat di jalur utama. Solenoid elektrik, NO atau NC tergantung posisi.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">V2xx</span>
+      <div class="comp-name">Valve balance &amp; UF</div>
+      <div class="comp-desc">V201–V207: valve pengontrol balance chamber dan jalur UF. Timing presisi dikontrol oleh CPU.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">V3xx</span>
+      <div class="comp-name">Valve disinfeksi</div>
+      <div class="comp-desc">V301–V310: jalur khusus untuk sirkuit tertutup disinfeksi. Memastikan disinfektan recirculation merata ke seluruh jalur.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">GP01/02</span>
+      <div class="comp-name">Pompa peristaltik konsentrat</div>
+      <div class="comp-desc">GP01 = konsentrat A, GP02 = konsentrat B (BICART). Kecepatan diatur proporsional terhadap Qd.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">SF01-04</span>
+      <div class="comp-name">Safety flow sensor</div>
+      <div class="comp-desc">Sensor aliran yang memverifikasi ada/tidaknya aliran di jalur kritis. Digunakan untuk deteksi kebocoran dan verifikasi valve.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">FS01/02</span>
+      <div class="comp-name">Flow switch</div>
+      <div class="comp-desc">FS01 = sisi fresh balance chamber, FS02 = sisi spent. Sinyal bergantian ini yang mengontrol siklus pergantian balance chamber.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">BYC1</span>
+      <div class="comp-name">Bypass valve utama</div>
+      <div class="comp-desc">Valve paling kritis — mengalihkan dialisat ke drain saat alarm. Normally open ke drain (fail-safe design).</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">TT01-06</span>
+      <div class="comp-name">Temperature sensor</div>
+      <div class="comp-desc">Sensor suhu di berbagai titik: inlet air (TT01), setelah heater (TT03), dan dialisat akhir (TT05). Redundansi untuk keamanan.</div>
+    </div>
+    <div class="comp-card">
+      <span class="comp-id">CC01-06</span>
+      <div class="comp-name">Conductivity cell</div>
+      <div class="comp-desc">CC01/03 = setelah mixing A, CC05 = konduktivitas bikarbonat, CC06 = final conductivity. Monitoring berlapis untuk formulasi.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:12px">Cara mengakses mode Pump Test (diagnostik lapangan)</div>
+    <div class="g2">
+      <div class="stepper">
+        <div class="step">
+          <div class="snum sn-amber">1</div>
+          <div class="sbody">
+            <div class="stitle">Menu → Device Setting</div>
+            <div class="sdesc">Dari layar utama, masuk ke Menu → Setting → Device Setting. Memerlukan password teknisi.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-amber">2</div>
+          <div class="sbody">
+            <div class="stitle">Pilih "Pump Test"</div>
+            <div class="sdesc">Tampil diagram sirkuit lengkap. Setiap komponen ditandai dengan ID-nya (V101, GP01, dll).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum sn-done">✓</div>
+          <div class="sbody">
+            <div class="stitle">Tap komponen untuk kontrol manual</div>
+            <div class="sdesc">Setiap valve/pompa dapat diaktifkan secara individual untuk verifikasi. Status real-time ditampilkan dengan warna (aktif = biru/merah sesuai diagram).</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="snote na" style="margin-bottom:10px">Mode Pump Test <strong>hanya untuk teknisi</strong> — jangan digunakan saat pasien tersambung</div>
+        <div class="snote ng" style="margin-bottom:10px">Gunakan untuk: verifikasi valve setelah perbaikan, cek pompa setelah penggantian komponen, identifikasi valve yang tidak berrespons</div>
+        <div class="snote nb">Status valve: warna berbeda menunjukkan open/closed/error — lihat legenda warna di manual service DORA-6000</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.5 PREVENTIVE MAINTENANCE ===== -->
+<div class="sec" id="s5">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.5</span>
+    <div>
+      <div class="sec-title">Jadwal Preventive Maintenance</div>
+      <div class="sec-sub">Pemeliharaan berkala untuk menjaga performa dan umur panjang mesin</div>
+    </div>
+  </div>
+
+  <div class="pm-grid" style="margin-bottom:20px">
+    <div class="pm-card">
+      <div class="pm-freq">Harian</div>
+      <ul class="pm-list">
+        <li>Disinfeksi setelah setiap sesi</li>
+        <li>Cek level konsentrat A &amp; bicart</li>
+        <li>Verifikasi konduktivitas awal</li>
+        <li>Inspeksi visual kebocoran</li>
+        <li>Cek tekanan air inlet</li>
+        <li>Verifikasi baterai backup 100%</li>
+        <li>Review log alarm hari ini</li>
+      </ul>
+    </div>
+    <div class="pm-card">
+      <div class="pm-freq">Mingguan</div>
+      <ul class="pm-list">
+        <li>Hot citric acid 85°C disinfeksi</li>
+        <li>Kalibrasi konduktivitas (verifikasi)</li>
+        <li>Cek filter WF01 inlet — bersihkan</li>
+        <li>Inspeksi selang pompa peristaltik</li>
+        <li>Cek sambungan konsentrat A/B</li>
+        <li>Test alarm manual (ART, VEN)</li>
+        <li>Bersihkan eksterior mesin</li>
+      </ul>
+    </div>
+    <div class="pm-card">
+      <div class="pm-freq" style="color:var(--green)">Bulanan</div>
+      <ul class="pm-list">
+        <li>Kalibrasi sensor tekanan (ART/VEN/TMP)</li>
+        <li>Kalibrasi sensor suhu TT01/03/05</li>
+        <li>Kalibrasi conductivity cell CC01/05/06</li>
+        <li>Test blood leak detector (verifikasi)</li>
+        <li>Cek dan bersihkan endotoxin filter</li>
+        <li>Verifikasi akurasi UF pump keramik</li>
+        <li>Update software jika tersedia</li>
+        <li>Backup data log ke PC/USB</li>
+      </ul>
+    </div>
+    <div class="pm-card">
+      <div class="pm-freq" style="color:var(--blue)">Tahunan</div>
+      <ul class="pm-list">
+        <li>Penggantian endotoxin filter</li>
+        <li>Penggantian selang pompa peristaltik A/B</li>
+        <li>Cek seal pompa UF keramik</li>
+        <li>Inspeksi heater element</li>
+        <li>Kalibrasi penuh semua sensor</li>
+        <li>Cek baterai backup — ganti jika &lt;80%</li>
+        <li>Inspeksi komponen elektronik</li>
+        <li>Sertifikasi metrologi (jika wajib)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:14px">Tanda mesin memerlukan perhatian segera</div>
+    <table class="tbl">
+      <tbody><tr><th>Tanda</th><th>Kemungkinan Penyebab</th><th>Tindakan</th><th>Urgensi</th></tr>
+      <tr>
+        <td>Alarm konduktivitas berulang padahal konsentrat cukup</td>
+        <td>Conductivity cell CC kotor/rusak, selang bocor mikro</td>
+        <td>Bersihkan cell, cek sambungan selang</td>
+        <td><span class="badge ba">Segera</span></td>
+      </tr>
+      <tr>
+        <td>UF tidak mencapai goal meski waktu cukup</td>
+        <td>Pompa keramik aus, airtightness bocor, TMP terlalu tinggi</td>
+        <td>Cek airtightness, evaluasi dializer, teknisi</td>
+        <td><span class="badge ba">Segera</span></td>
+      </tr>
+      <tr>
+        <td>Suhu dialisat tidak stabil, naik turun</td>
+        <td>Heater element lemah, sensor TT drift</td>
+        <td>Kalibrasi sensor, cek heater</td>
+        <td><span class="badge ba">Segera</span></td>
+      </tr>
+      <tr>
+        <td>Blood leak alarm palsu berulang</td>
+        <td>Detektor kotor/terkontaminasi protein</td>
+        <td>Bersihkan optical path detektor</td>
+        <td><span class="badge bs">Terencana</span></td>
+      </tr>
+      <tr>
+        <td>Suara tidak normal dari pompa</td>
+        <td>Bearing pompa aus, benda asing di jalur</td>
+        <td>Hentikan penggunaan, hubungi teknisi</td>
+        <td><span class="badge br">Kritis</span></td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.6 TROUBLESHOOTING ===== -->
+<div class="sec" id="s6">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.6</span>
+    <div>
+      <div class="sec-title">Troubleshooting — Error Code &amp; Solusi</div>
+      <div class="sec-sub">Panduan sistematis untuk mengidentifikasi dan mengatasi masalah umum di lapangan</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:10px">Prinsip troubleshooting DORA-6000</div>
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="snote na">1. Catat kode error dan waktu kejadian dari Log sebelum reset apapun</div>
+        <div class="snote na">2. Identifikasi apakah masalah di sirkuit darah, dialisat, atau listrik</div>
+        <div class="snote na">3. Verifikasi dengan mode Pump Test sebelum tindakan perbaikan</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="snote ng">4. Selalu backup data log pasien sebelum melakukan reset atau restart mesin</div>
+        <div class="snote nb">5. Jika masalah berulang &gt;2x dalam seminggu → eskalasi ke teknisi senior / principal</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tb active" onclick="showT(&#39;trbl&#39;,&#39;t-cond&#39;)">Konduktivitas</button>
+    <button class="tb" onclick="showT(&#39;trbl&#39;,&#39;t-pres&#39;)">Tekanan</button>
+    <button class="tb" onclick="showT(&#39;trbl&#39;,&#39;t-uf&#39;)">UF / TMP</button>
+    <button class="tb" onclick="showT(&#39;trbl&#39;,&#39;t-air&#39;)">Air &amp; Blood Leak</button>
+    <button class="tb" onclick="showT(&#39;trbl&#39;,&#39;t-other&#39;)">Lainnya</button>
+  </div>
+
+  <!-- KONDUKTIVITAS -->
+  <div id="t-cond" class="tpanel active">
+    <table class="tbl" style="background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <tbody><tr><th style="width:28%">Masalah</th><th style="width:24%">Penyebab Umum</th><th>Langkah Diagnostik</th><th style="width:15%">Solusi</th></tr>
+      <tr>
+        <td><strong>Konduktivitas terlalu rendah</strong><br><span style="font-size:11px;color:var(--muted)">&lt; batas bawah alarm</span></td>
+        <td>Konsentrat A habis, selang tersumbat, pompa GP01 tidak jalan</td>
+        <td>1. Cek level konsentrat<br>2. Pump Test → test GP01<br>3. Cek selang dari kinking</td>
+        <td><span class="badge ba">Isi konsentrat</span> atau ganti selang pompa</td>
+      </tr>
+      <tr>
+        <td><strong>Konduktivitas terlalu tinggi</strong><br><span style="font-size:11px;color:var(--muted)">&gt; batas atas alarm</span></td>
+        <td>Ratio pompa salah (custom mode), air supply tersumbat, sensor CC drift</td>
+        <td>1. Verifikasi setting ratio<br>2. Cek aliran air supply<br>3. Kalibrasi conductivity cell</td>
+        <td>Reset ke Fixed Ratio, kalibrasi CC</td>
+      </tr>
+      <tr>
+        <td><strong>Konduktivitas tidak stabil</strong><br><span style="font-size:11px;color:var(--muted)">naik turun tanpa sebab</span></td>
+        <td>Udara di jalur konsentrat, gelembung masuk ke sensor, selang pompa aus</td>
+        <td>1. Cek sambungan selang konsentrat<br>2. Purge udara dari jalur<br>3. Inspeksi selang pompa peristaltik</td>
+        <td>Ganti selang pompa jika terdeformasi</td>
+      </tr>
+      <tr>
+        <td><strong>Bikarbonat conductivity alarm</strong></td>
+        <td>BICART cartridge hampir habis, selang B tersumbat, pompa GP02 lemah</td>
+        <td>1. Cek berat/level cartridge<br>2. Test GP02 di Pump Test<br>3. Cek sambungan port B</td>
+        <td><span class="badge ba">Ganti BICART</span>, cek GP02</td>
+      </tr>
+    </tbody></table>
+  </div>
+
+  <!-- TEKANAN -->
+  <div id="t-pres" class="tpanel">
+    <table class="tbl" style="background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <tbody><tr><th>Masalah</th><th>Penyebab Umum</th><th>Langkah Diagnostik</th><th>Solusi</th></tr>
+      <tr>
+        <td><strong>ART pressure terlalu negatif</strong><br><span style="font-size:11px;color:var(--muted)">&lt; -300 mmHg</span></td>
+        <td>Akses arterial tersumbat, kinking arterial bloodline, fistula kolaps, QB terlalu tinggi</td>
+        <td>1. Cek akses vaskular pasien<br>2. Trace bloodline arterial dari kinking<br>3. Turunkan QB 50 mL/min</td>
+        <td>Turunkan QB, perbaiki posisi jarum/akses</td>
+      </tr>
+      <tr>
+        <td><strong>VEN pressure terlalu tinggi</strong><br><span style="font-size:11px;color:var(--muted)">&gt; +300 mmHg</span></td>
+        <td>Akses venous tersumbat, kinking venous bloodline, clot di jarum atau di dializer</td>
+        <td>1. Cek jarum venous, putar/reposisi<br>2. Trace bloodline venous<br>3. Cek TMP — jika juga tinggi → dializer clot</td>
+        <td>Reposisi akses, ganti dializer jika clot</td>
+      </tr>
+      <tr>
+        <td><strong>Pressure sensor drifting</strong><br><span style="font-size:11px;color:var(--muted)">baseline tidak nol saat priming</span></td>
+        <td>Pressure transducer protector basah/tersumbat, air masuk ke port tekanan</td>
+        <td>1. Cek dan ganti transducer protector<br>2. Purge port tekanan<br>3. Zero calibrate sensor</td>
+        <td>Ganti transducer protector, kalibrasi ulang</td>
+      </tr>
+    </tbody></table>
+  </div>
+
+  <!-- UF / TMP -->
+  <div id="t-uf" class="tpanel">
+    <table class="tbl" style="background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <tbody><tr><th>Masalah</th><th>Penyebab</th><th>Diagnostik</th><th>Solusi</th></tr>
+      <tr>
+        <td><strong>TMP terus meningkat</strong><br><span style="font-size:11px;color:var(--muted)">tren naik selama sesi</span></td>
+        <td>Dializer clotting bertahap, antikoagulan kurang, QB terlalu tinggi relatif terhadap membran</td>
+        <td>1. Monitor tren TMP per 30 menit<br>2. Cek syringe heparin — masih ada?<br>3. Evaluasi QB vs area dializer</td>
+        <td>Naikkan heparin, siapkan dializer cadangan</td>
+      </tr>
+      <tr>
+        <td><strong>UF alarm — volume tidak tercapai</strong></td>
+        <td>TMP terlalu tinggi membatasi UF, waktu treatment kurang, airtightness bocor</td>
+        <td>1. Cek TMP saat ini<br>2. Run airtightness test ulang<br>3. Verifikasi setting UF rate dan waktu</td>
+        <td>Perpanjang waktu atau naikkan UF rate jika TMP masih aman</td>
+      </tr>
+      <tr>
+        <td><strong>Airtightness test gagal</strong></td>
+        <td>Seal pompa keramik aus, kebocoran kecil di sambungan jalur UF</td>
+        <td>1. Isolasi jalur — cek satu per satu<br>2. Inspeksi visual sambungan<br>3. Ganti O-ring atau seal</td>
+        <td><span class="badge br">Teknisi diperlukan</span></td>
+      </tr>
+    </tbody></table>
+  </div>
+
+  <!-- AIR & BLOOD LEAK -->
+  <div id="t-air" class="tpanel">
+    <table class="tbl" style="background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <tbody><tr><th>Masalah</th><th>Penyebab</th><th>Diagnostik</th><th>Solusi</th></tr>
+      <tr>
+        <td><strong>Air alarm — gelembung terdeteksi</strong><br><span style="font-size:11px;color:var(--red)">KRITIS — venous clamp menutup</span></td>
+        <td>Priming kurang sempurna, koneksi longgar, sambungan jarum bocor, cairan NaCl habis</td>
+        <td>1. JANGAN buka clamp sebelum sumber ditemukan<br>2. Trace bloodline dari bawah ke atas<br>3. Cek semua konektor luer lock</td>
+        <td>Purge manual udara, kencangkan konektor, lanjut setelah aman</td>
+      </tr>
+      <tr>
+        <td><strong>Air alarm palsu berulang</strong><br><span style="font-size:11px;color:var(--muted)">tanpa gelembung nyata</span></td>
+        <td>Air detector kotor (protein deposit), kalibrasi salah, bloodline tidak presisi di slot</td>
+        <td>1. Bersihkan slot air detector dengan alkohol<br>2. Pastikan tubing tepat di slot<br>3. Verifikasi jenis bloodline kompatibel</td>
+        <td>Bersihkan detektor, re-seat bloodline</td>
+      </tr>
+      <tr>
+        <td><strong>Blood leak alarm</strong><br><span style="font-size:11px;color:var(--red)">KRITIS — membran bocor</span></td>
+        <td>Membran dializer rusak (defek atau TMP terlalu tinggi), clamp dializer tidak tepat</td>
+        <td>1. Aktifkan bypass manual segera<br>2. Cek visual dialisat — kemerahan?<br>3. Blood return pasien, ganti dializer</td>
+        <td><span class="badge br">Ganti dializer</span> — jangan lanjutkan</td>
+      </tr>
+      <tr>
+        <td><strong>Blood leak alarm palsu</strong></td>
+        <td>Detektor optik terkontaminasi, dialisat keruh (lipemia, bilirubin tinggi)</td>
+        <td>1. Bersihkan optical path detektor<br>2. Konfirmasi visual dialisat<br>3. Lab test dialisat jika ragu</td>
+        <td>Bersihkan detektor, verifikasi visual manual</td>
+      </tr>
+    </tbody></table>
+  </div>
+
+  <!-- LAINNYA -->
+  <div id="t-other" class="tpanel">
+    <table class="tbl" style="background:var(--panel);border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+      <tbody><tr><th>Masalah</th><th>Penyebab</th><th>Solusi</th></tr>
+      <tr>
+        <td><strong>Layar tidak responsif</strong></td>
+        <td>Touchscreen masalah, software hang</td>
+        <td>Gunakan tombol fisik. Restart mesin dari power (bukan saat treatment aktif). Jika terus → teknisi.</td>
+      </tr>
+      <tr>
+        <td><strong>Baterai backup tidak mau mengisi</strong></td>
+        <td>Baterai sudah lewat umur (biasanya &gt;3 tahun), charger circuit masalah</td>
+        <td>Ganti baterai. Jangan operasikan di area tanpa genset jika baterai lemah.</td>
+      </tr>
+      <tr>
+        <td><strong>Disinfeksi tidak selesai (timeout)</strong></td>
+        <td>Tekanan air terlalu rendah, valve disinfeksi gagal bergerak, disinfektan habis di tengah jalan</td>
+        <td>Cek tekanan air inlet ≥1 bar, Pump Test valve V3xx, cek level disinfektan.</td>
+      </tr>
+      <tr>
+        <td><strong>Blood pump speed tidak akurat</strong></td>
+        <td>Roller pump slip, motor encoder rusak, setting knob physical tidak terkalibrasi</td>
+        <td>Verifikasi QB dengan flow meter eksternal. Kalibrasi ulang blood pump motor. Teknisi jika slip.</td>
+      </tr>
+      <tr>
+        <td><strong>Mesin tidak bisa masuk mode Treatment</strong></td>
+        <td>Self-check gagal, ada alarm aktif yang belum diselesaikan, priming belum selesai</td>
+        <td>Cek Log Alarm, resolve semua alarm, pastikan priming selesai dan tidak ada alarm aktif.</td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 3.7 KUIS ===== -->
+<div class="sec" id="s7">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 3.7</span>
+    <div>
+      <div class="sec-title">Latihan Pemahaman — Teknis</div>
+      <div class="sec-sub">Kuis evaluasi penguasaan teknis lanjutan DORA-6000</div>
+    </div>
+  </div>
+
+  <div class="qbox">
+    <h3>Kuis Modul 3 — Teknis Lanjutan</h3>
+
+    <div class="qq" id="q1">
+      <div class="qtext">1. Apa keunggulan utama pompa UF keramik dibanding pompa peristaltik biasa untuk ultrafiltrasi?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q1&#39;,false)"><span class="qltr">A</span>Lebih murah dan mudah diganti</div>
+        <div class="qopt" onclick="qa(this,&#39;q1&#39;,true)"><span class="qltr">B</span>Volume per stroke sangat presisi (±1%), tidak dipengaruhi viskositas atau tekanan balik</div>
+        <div class="qopt" onclick="qa(this,&#39;q1&#39;,false)"><span class="qltr">C</span>Dapat digunakan untuk memompa darah sekaligus</div>
+        <div class="qopt" onclick="qa(this,&#39;q1&#39;,false)"><span class="qltr">D</span>Tidak memerlukan kalibrasi sama sekali</div>
+      </div>
+      <div class="qfb" id="fb-q1"></div>
+    </div>
+
+    <div class="qq" id="q2">
+      <div class="qtext">2. Saat bypass valve (BYC1) aktif secara otomatis, apa yang terjadi pada aliran darah pasien?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q2&#39;,false)"><span class="qltr">A</span>Blood pump berhenti dan clamp venous menutup</div>
+        <div class="qopt" onclick="qa(this,&#39;q2&#39;,false)"><span class="qltr">B</span>Darah pasien dialihkan ke drain bersama dialisat</div>
+        <div class="qopt" onclick="qa(this,&#39;q2&#39;,true)"><span class="qltr">C</span>Aliran darah tetap berjalan normal — hanya dialisat yang dialihkan ke drain</div>
+        <div class="qopt" onclick="qa(this,&#39;q2&#39;,false)"><span class="qltr">D</span>Treatment langsung dihentikan total secara otomatis</div>
+      </div>
+      <div class="qfb" id="fb-q2"></div>
+    </div>
+
+    <div class="qq" id="q3">
+      <div class="qtext">3. Pada mode Pump Test, apa yang dapat dilakukan teknisi?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q3&#39;,false)"><span class="qltr">A</span>Mengubah resep dialisat pasien secara permanen</div>
+        <div class="qopt" onclick="qa(this,&#39;q3&#39;,true)"><span class="qltr">B</span>Memonitor status dan mengontrol setiap valve/pompa secara individual untuk diagnostik</div>
+        <div class="qopt" onclick="qa(this,&#39;q3&#39;,false)"><span class="qltr">C</span>Melihat data pasien dari sesi sebelumnya</div>
+        <div class="qopt" onclick="qa(this,&#39;q3&#39;,false)"><span class="qltr">D</span>Reset seluruh kalibrasi mesin ke default pabrik</div>
+      </div>
+      <div class="qfb" id="fb-q3"></div>
+    </div>
+
+    <div class="qq" id="q4">
+      <div class="qtext">4. TMP terus meningkat selama sesi treatment. Apa kemungkinan penyebab paling umum?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q4&#39;,false)"><span class="qltr">A</span>Konsentrat A habis</div>
+        <div class="qopt" onclick="qa(this,&#39;q4&#39;,false)"><span class="qltr">B</span>Blood pump speed terlalu rendah</div>
+        <div class="qopt" onclick="qa(this,&#39;q4&#39;,true)"><span class="qltr">C</span>Dializer mulai clotting akibat antikoagulan kurang</div>
+        <div class="qopt" onclick="qa(this,&#39;q4&#39;,false)"><span class="qltr">D</span>Suhu dialisat terlalu tinggi</div>
+      </div>
+      <div class="qfb" id="fb-q4"></div>
+    </div>
+
+    <div class="qq" id="q5">
+      <div class="qtext">5. Balance chamber memastikan akurasi UF dengan cara apa?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q5&#39;,false)"><span class="qltr">A</span>Mengukur berat pasien sebelum dan sesudah treatment</div>
+        <div class="qopt" onclick="qa(this,&#39;q5&#39;,true)"><span class="qltr">B</span>Memastikan volume dialisat masuk = keluar ± UF yang dikontrol pompa keramik</div>
+        <div class="qopt" onclick="qa(this,&#39;q5&#39;,false)"><span class="qltr">C</span>Mengontrol kecepatan blood pump secara proporsional</div>
+        <div class="qopt" onclick="qa(this,&#39;q5&#39;,false)"><span class="qltr">D</span>Memantau tekanan arterial dan venous secara bersamaan</div>
+      </div>
+      <div class="qfb" id="fb-q5"></div>
+    </div>
+
+    <div class="qq" id="q6">
+      <div class="qtext">6. Alarm blood leak muncul. Setelah bypass diaktifkan, langkah pertama yang harus dilakukan adalah?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,&#39;q6&#39;,false)"><span class="qltr">A</span>Matikan mesin sepenuhnya dan tinggalkan pasien</div>
+        <div class="qopt" onclick="qa(this,&#39;q6&#39;,false)"><span class="qltr">B</span>Naikkan blood flow untuk membilas dializer</div>
+        <div class="qopt" onclick="qa(this,&#39;q6&#39;,true)"><span class="qltr">C</span>Blood return pasien segera, lalu ganti dengan dializer baru</div>
+        <div class="qopt" onclick="qa(this,&#39;q6&#39;,false)"><span class="qltr">D</span>Tekan Reset dan lanjutkan treatment</div>
+      </div>
+      <div class="qfb" id="fb-q6"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SUMMARY -->
+<div class="sum-final">
+  <h2>Ringkasan Modul 3 — Teknis Lanjutan</h2>
+  <div class="sg">
+    <div class="sb">
+      <h4>Hidraulik</h4>
+      <ul>
+        <li>7 zona komponen teridentifikasi</li>
+        <li>Pompa A &amp; B independen</li>
+        <li>BICART eliminasi kontaminasi</li>
+        <li>Bypass fail-safe ke drain</li>
+        <li>Heat exchanger hemat energi</li>
+      </ul>
+    </div>
+    <div class="sb">
+      <h4>Balance &amp; UF</h4>
+      <ul>
+        <li>2 ruang + membran fleksibel</li>
+        <li>Pompa keramik ±1% presisi</li>
+        <li>Tidak terpengaruh viskositas</li>
+        <li>Self-check airtightness otomatis</li>
+        <li>I-UF mode tersedia</li>
+      </ul>
+    </div>
+    <div class="sb">
+      <h4>PM &amp; Valve</h4>
+      <ul>
+        <li>Harian / Mingguan / Bulanan / Tahunan</li>
+        <li>Pump Test mode untuk diagnostik</li>
+        <li>9 kategori komponen valve</li>
+        <li>CC01/05/06 kalibrasi bulanan</li>
+        <li>Endotoxin filter ganti tahunan</li>
+      </ul>
+    </div>
+    <div class="sb">
+      <h4>Troubleshooting</h4>
+      <ul>
+        <li>5 kategori masalah utama</li>
+        <li>Konduktivitas, Tekanan, UF</li>
+        <li>Air detector &amp; blood leak</li>
+        <li>Catat log sebelum reset</li>
+        <li>Eskalasi jika berulang &gt;2x</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="nxt-wrap">
+  <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Modul 3 selesai — satu modul lagi untuk melengkapi seluruh kurikulum</p>
+  <a class="nxt-btn" href="file:///Users/cepimaryadi/Downloads/Modul4_Komersial_DORA6000.html">
+    Lanjut ke Modul 4 — Komersial &amp; Disposable
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+  </a>
+</div>
+
+</div><!-- /main -->
+
+<script>
+function goSec(id,el){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nv').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function showT(grp,id){
+  const sec=event.target.closest('.sec');
+  sec.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  sec.querySelectorAll('.tpanel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+const qm={
+  q1:{ok:'Benar! Pompa keramik menggunakan displacement mekanik — volume per stroke tidak berubah apapun kondisi cairan. Inilah mengapa akurasi UF DORA-6000 ±1%.',wrong:'Kurang tepat. Keunggulan utama pompa keramik adalah akurasi volume ±1% yang konsisten tanpa dipengaruhi viskositas atau tekanan balik.'},
+  q2:{ok:'Benar! Bypass hanya mengalihkan dialisat — darah pasien tetap mengalir melalui blood pump. Ini desain fail-safe yang melindungi pasien dari dialisat berbahaya.',wrong:'Kurang tepat. Saat bypass aktif, hanya jalur dialisat yang berubah — dialihkan ke drain. Blood pump dan aliran darah tetap berjalan normal.'},
+  q3:{ok:'Benar! Pump Test adalah alat diagnostik teknisi yang memungkinkan kontrol dan monitoring setiap valve/pompa secara individual tanpa harus treatment aktif.',wrong:'Kurang tepat. Pump Test memungkinkan teknisi memonitor dan mengontrol setiap valve/pompa individual untuk keperluan diagnostik dan verifikasi perbaikan.'},
+  q4:{ok:'Benar! TMP yang terus meningkat selama sesi adalah tanda klasik dializer mulai clotting — antikoagulan tidak cukup atau darah terlalu kental.',wrong:'Kurang tepat. TMP meningkat progresif adalah tanda dializer clotting akibat antikoagulan kurang atau QB terlalu tinggi relatif terhadap ukuran dializer.'},
+  q5:{ok:'Benar! Balance chamber memastikan conservation of volume — setiap mL yang masuk harus ada yang keluar, kecuali UF yang dikontrol tepat oleh pompa keramik.',wrong:'Kurang tepat. Balance chamber bekerja dengan prinsip volumetrik: volume dialisat masuk = keluar, dengan selisih yang tepat sebagai UF yang diukur pompa keramik.'},
+  q6:{ok:'Benar! Blood leak = membran bocor = darah masuk ke dialisat. Bypass aktif sudah benar, langkah berikut adalah blood return pasien segera dan ganti dializer.',wrong:'Kurang tepat. Setelah bypass aktif pada blood leak, pasien harus segera dilakukan blood return untuk keamanan, kemudian ganti dializer baru jika treatment perlu dilanjutkan.'}
+};
+
+function qa(el,qId,correct){
+  const q=document.getElementById(qId);
+  if(q.dataset.answered)return;
+  q.dataset.answered='1';
+  q.querySelectorAll('.qopt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    q.querySelectorAll('.qopt').forEach(o=>{
+      if(o.getAttribute('onclick')&&o.getAttribute('onclick').includes('true'))o.classList.add('correct');
+    });
+  }
+  const fb=document.getElementById('fb-'+qId);
+  fb.classList.add('show',correct?'correct':'wrong');
+  fb.textContent=correct?qm[qId].ok:qm[qId].wrong;
+}
+
+window.addEventListener('scroll',()=>{
+  const ss=['s1','s2','s3','s4','s5','s6','s7'];
+  const its=document.querySelectorAll('.nv');
+  let cur=0;
+  ss.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<130)cur=i;
+  });
+  its.forEach((n,i)=>n.classList.toggle('active',i===cur));
+});
+</script>
+
+
+</body></html>

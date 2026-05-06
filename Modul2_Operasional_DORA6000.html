@@ -590,9 +590,34 @@ body {
   .nav{padding:0 16px;}
   .grid2,.grid3,.sum-grid,.profile-grid{grid-template-columns:1fr;}
 }
+
+/* BACK TO PORTAL BUTTON */
+.home-btn{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 15px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(8,13,20,.88);
+  color:#ffffff;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+  backdrop-filter:blur(8px);
+}
+.home-btn:hover{transform:translateY(-1px);background:rgba(13,158,117,.95);}
+
 </style>
 </head>
 <body>
+<a class="home-btn" href="index.html">← Portal Utama</a>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -608,13 +633,13 @@ body {
 
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-item active" onclick="gotoSection('s1',this)">2.1 Self-check</div>
-  <div class="nav-item" onclick="gotoSection('s2',this)">2.2 Setup Treatment</div>
-  <div class="nav-item" onclick="gotoSection('s3',this)">2.3 Treatment HD</div>
-  <div class="nav-item" onclick="gotoSection('s4',this)">2.4 Blood Return</div>
-  <div class="nav-item" onclick="gotoSection('s5',this)">2.5 Rinse & Disinfeksi</div>
-  <div class="nav-item" onclick="gotoSection('s6',this)">2.6 Alarm & Kt/V</div>
-  <div class="nav-item" onclick="gotoSection('s7',this)">2.7 Latihan</div>
+  <div class="nav-item active" onclick="moduleNavJump('s1',this)">2.1 Self-check</div>
+  <div class="nav-item" onclick="moduleNavJump('s2',this)">2.2 Setup Treatment</div>
+  <div class="nav-item" onclick="moduleNavJump('s3',this)">2.3 Treatment HD</div>
+  <div class="nav-item" onclick="moduleNavJump('s4',this)">2.4 Blood Return</div>
+  <div class="nav-item" onclick="moduleNavJump('s5',this)">2.5 Rinse & Disinfeksi</div>
+  <div class="nav-item" onclick="moduleNavJump('s6',this)">2.6 Alarm & Kt/V</div>
+  <div class="nav-item" onclick="moduleNavJump('s7',this)">2.7 Latihan</div>
 </div>
 
 <div class="main">
@@ -1426,7 +1451,7 @@ body {
 
 <div class="next-wrap">
   <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Modul 2 selesai — siap masuk ke teknis lanjutan?</p>
-  <a class="next-btn" href="#">
+  <a class="next-btn" href="Modul 3 — Teknis Lanjutan DORA-6000.html">
     Lanjut ke Modul 3 — Teknis Lanjutan
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
@@ -1493,5 +1518,20 @@ window.addEventListener('scroll', () => {
   items.forEach((n,i) => n.classList.toggle('active', i === cur));
 });
 </script>
+
+<script>
+function moduleNavJump(id, el){
+  const target = document.getElementById(id);
+  if(!target) return;
+  const sticky = document.querySelector('.nav');
+  const offset = sticky ? sticky.offsetHeight + 12 : 80;
+  const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({top:y, behavior:'smooth'});
+  const navScope = el && el.closest ? (el.closest('.nav') || document) : document;
+  navScope.querySelectorAll('.nav-item,.nv').forEach(n=>n.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+</script>
+
 </body>
 </html>

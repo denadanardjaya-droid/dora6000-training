@@ -348,9 +348,34 @@ h1 em{font-style:normal;color:var(--amber);}
   .main{padding:28px 16px 60px;}
   .g2,.g3,.sg,.pm-grid,.component-grid{grid-template-columns:1fr;}
 }
+
+/* BACK TO PORTAL BUTTON */
+.home-btn{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 15px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(8,13,20,.88);
+  color:#ffffff;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+  backdrop-filter:blur(8px);
+}
+.home-btn:hover{transform:translateY(-1px);background:rgba(13,158,117,.95);}
+
 </style>
 </head>
 <body>
+<a class="home-btn" href="index.html">← Portal Utama</a>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -367,13 +392,13 @@ h1 em{font-style:normal;color:var(--amber);}
 
 <!-- NAV -->
 <div class="nav">
-  <div class="nv active" onclick="goSec(&#39;s1&#39;,this)">3.1 Sirkuit Hidraulik</div>
-  <div class="nv" onclick="goSec(&#39;s2&#39;,this)">3.2 Balance Chamber</div>
-  <div class="nv" onclick="goSec(&#39;s3&#39;,this)">3.3 Pompa UF Keramik</div>
-  <div class="nv" onclick="goSec(&#39;s4&#39;,this)">3.4 Diagram Valve</div>
-  <div class="nv" onclick="goSec(&#39;s5&#39;,this)">3.5 Preventive Maintenance</div>
-  <div class="nv" onclick="goSec(&#39;s6&#39;,this)">3.6 Troubleshooting</div>
-  <div class="nv" onclick="goSec(&#39;s7&#39;,this)">3.7 Latihan</div>
+  <div class="nv active" onclick="moduleNavJump(&#39;s1&#39;,this)">3.1 Sirkuit Hidraulik</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s2&#39;,this)">3.2 Balance Chamber</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s3&#39;,this)">3.3 Pompa UF Keramik</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s4&#39;,this)">3.4 Diagram Valve</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s5&#39;,this)">3.5 Preventive Maintenance</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s6&#39;,this)">3.6 Troubleshooting</div>
+  <div class="nv" onclick="moduleNavJump(&#39;s7&#39;,this)">3.7 Latihan</div>
 </div>
 
 <div class="main">
@@ -1333,7 +1358,7 @@ h1 em{font-style:normal;color:var(--amber);}
 
 <div class="nxt-wrap">
   <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Modul 3 selesai — satu modul lagi untuk melengkapi seluruh kurikulum</p>
-  <a class="nxt-btn" href="file:///Users/cepimaryadi/Downloads/Modul4_Komersial_DORA6000.html">
+  <a class="nxt-btn" href="Modul 4 — Komersial &amp; Disposable DORA-6000.html">
     Lanjut ke Modul 4 — Komersial &amp; Disposable
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
   </a>
@@ -1393,5 +1418,20 @@ window.addEventListener('scroll',()=>{
 });
 </script>
 
+
+
+<script>
+function moduleNavJump(id, el){
+  const target = document.getElementById(id);
+  if(!target) return;
+  const sticky = document.querySelector('.nav');
+  const offset = sticky ? sticky.offsetHeight + 12 : 80;
+  const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({top:y, behavior:'smooth'});
+  const navScope = el && el.closest ? (el.closest('.nav') || document) : document;
+  navScope.querySelectorAll('.nav-item,.nv').forEach(n=>n.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+</script>
 
 </body></html>

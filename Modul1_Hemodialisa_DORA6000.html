@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 1 — Dasar Hemodialisa & DORA-6000</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-mid: #102040;
+  --teal: #0d9e75;
+  --teal-light: #1db88a;
+  --teal-pale: #e1f5ee;
+  --coral: #e85c3a;
+  --coral-pale: #fdf0ec;
+  --blue: #1a6fc4;
+  --blue-pale: #e8f1fb;
+  --amber: #d4820a;
+  --amber-pale: #fdf3e1;
+  --purple: #6b4fd8;
+  --gray-100: #f5f6f8;
+  --gray-200: #e8eaed;
+  --gray-400: #9aa0ab;
+  --gray-600: #5a6070;
+  --gray-800: #2d3340;
+  --white: #ffffff;
+  --text: #1a1e2a;
+  --text-muted: #5a6070;
+  --border: #dde1e8;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--gray-100);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+/* HEADER */
+.hero {
+  background: var(--navy);
+  padding: 56px 48px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -80px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: rgba(13,158,117,0.12);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 20%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(26,111,196,0.08);
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(13,158,117,0.2);
+  color: var(--teal-light);
+  border: 1px solid rgba(13,158,117,0.35);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 14px;
+  position: relative;
+}
+.hero h1 span { color: var(--teal-light); }
+.hero p {
+  color: rgba(255,255,255,0.62);
+  font-size: 15px;
+  max-width: 580px;
+  position: relative;
+}
+.hero-meta {
+  display: flex;
+  gap: 28px;
+  margin-top: 32px;
+  position: relative;
+}
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero-meta-item .label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-meta-item .value {
+  font-size: 14px;
+  color: var(--teal-light);
+  font-weight: 500;
+}
+
+/* NAV */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.nav-item {
+  padding: 16px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+  user-select: none;
+}
+.nav-item:hover { color: var(--teal); }
+.nav-item.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+/* MAIN */
+.main { max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; }
+
+/* SECTION */
+.section { margin-bottom: 48px; }
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--teal);
+  background: var(--teal-pale);
+  border: 1px solid rgba(13,158,117,0.25);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+}
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.tab-btn:hover { border-color: var(--teal); color: var(--teal); }
+.tab-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* SVG CARD */
+.svg-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+/* SPEC GRID */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.spec-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.spec-card .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.spec-card .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.spec-card .unit {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.spec-card.teal { border-left: 3px solid var(--teal); }
+.spec-card.coral { border-left: 3px solid var(--coral); }
+.spec-card.blue { border-left: 3px solid var(--blue); }
+.spec-card.amber { border-left: 3px solid var(--amber); }
+
+/* CONCEPT BOX */
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.concept-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.concept-box h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.concept-box .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.concept-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.concept-box ul li {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-left: 14px;
+  position: relative;
+}
+.concept-box ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 12px;
+}
+
+/* ANATOMY TABLE */
+.anatomy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.anatomy-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.anatomy-table th:first-child { border-radius: 8px 0 0 0; }
+.anatomy-table th:last-child { border-radius: 0 8px 0 0; }
+.anatomy-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+}
+.anatomy-table tr:last-child td { border-bottom: none; }
+.anatomy-table tr:nth-child(even) td { background: var(--gray-100); }
+.anatomy-table .comp-name {
+  font-weight: 500;
+  color: var(--navy);
+}
+.anatomy-table .circuit-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.badge-darah { background: var(--coral-pale); color: var(--coral); }
+.badge-dialisat { background: var(--blue-pale); color: var(--blue); }
+.badge-shared { background: var(--teal-pale); color: var(--teal); }
+
+/* PRINCIPLE CARDS */
+.principle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.principle-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.principle-card .icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+.principle-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.principle-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* DISINFECTION */
+.dis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.dis-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+.dis-card .dis-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.dis-card .dis-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* SUMMARY BOX */
+.summary-box {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.summary-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(13,158,117,0.15);
+}
+.summary-box h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: var(--teal-light);
+  position: relative;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  position: relative;
+}
+.summary-item h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--teal-light);
+  margin-bottom: 8px;
+}
+.summary-item ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.summary-item ul li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  padding-left: 14px;
+  position: relative;
+}
+.summary-item ul li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--teal-light);
+  font-weight: 700;
+}
+
+/* NEXT MODULE */
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.next-btn:hover { background: var(--teal-light); }
+.next-btn svg { width: 16px; height: 16px; }
+
+/* SEPARATOR */
+.sep {
+  height: 1px;
+  background: var(--border);
+  margin: 40px 0;
+}
+
+/* QUIZ */
+.quiz-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.quiz-box h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quiz-q {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.quiz-q:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.quiz-q .q-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quiz-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all .15s;
+  user-select: none;
+}
+.quiz-opt:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-pale); }
+.quiz-opt.correct { background: var(--teal-pale); border-color: var(--teal); color: var(--teal); font-weight: 500; }
+.quiz-opt.wrong { background: var(--coral-pale); border-color: var(--coral); color: var(--coral); }
+.quiz-opt .opt-letter {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.quiz-feedback {
+  margin-top: 10px;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--teal-pale); color: var(--teal); }
+.quiz-feedback.wrong { background: var(--coral-pale); color: var(--coral); }
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.section { animation: fadeInUp .4s ease both; }
+.section:nth-child(2) { animation-delay: .06s; }
+.section:nth-child(3) { animation-delay: .12s; }
+.section:nth-child(4) { animation-delay: .18s; }
+
+/* SVG styles */
+.arr-line { stroke-width: 1.5; fill: none; }
+
+@media (max-width: 700px) {
+  .hero { padding: 36px 24px 32px; }
+  .hero h1 { font-size: 28px; }
+  .main { padding: 28px 16px 60px; }
+  .concept-grid, .principle-row, .summary-grid { grid-template-columns: 1fr; }
+  .nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Pelatihan Produk · Vital Healthcare</div>
+  <h1>Dasar Hemodialisa &<br><span>Pengenalan DORA-6000</span></h1>
+  <p>Memahami mengapa hemodialisa diperlukan, prinsip kerja, anatomi mesin, dan spesifikasi teknis kunci yang perlu dikuasai.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="label">Modul</span>
+      <span class="value">1 dari 4</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Sesi</span>
+      <span class="value">3 Sesi</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Mesin</span>
+      <span class="value">DORA-6000</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="label">Manufaktur</span>
+      <span class="value">Guangzhou Phoenix</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-item active" onclick="scrollTo('s1', this)">1.1 Mengapa HD?</div>
+  <div class="nav-item" onclick="scrollTo('s2', this)">1.2 Prinsip Kerja</div>
+  <div class="nav-item" onclick="scrollTo('s3', this)">1.3 Anatomi DORA-6000</div>
+  <div class="nav-item" onclick="scrollTo('s4', this)">1.4 Spesifikasi</div>
+  <div class="nav-item" onclick="scrollTo('s5', this)">1.5 Latihan</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- SESI 1.1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <span class="section-num">Sesi 1.1</span>
+      <div>
+        <div class="section-title">Mengapa Ginjal Gagal & Apa Itu Hemodialisa?</div>
+        <div class="section-subtitle">Fondasi klinis yang mendasari kebutuhan HD</div>
+      </div>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-box">
+        <h3><span class="dot" style="background:var(--teal)"></span>Fungsi Ginjal Normal</h3>
+        <ul>
+          <li>Menyaring 180 liter darah per hari</li>
+          <li>1 juta nefron aktif bekerja terus-menerus</li>
+          <li>Membuang urea, kreatinin, fosfat</li>
+          <li>Regulasi elektrolit (Na, K, Ca, bikarbonat)</li>
+          <li>Kontrol tekanan darah & keseimbangan cairan</li>
+          <li>Produksi eritropoietin (EPO)</li>
+          <li>Aktivasi vitamin D</li>
+        </ul>
+      </div>
+      <div class="concept-box">
+        <h3><span class="dot" style="background:var(--coral)"></span>Gagal Ginjal (CKD Stadium 5)</h3>
+        <ul>
+          <li>GFR &lt; 15 mL/min (normal: 90–120)</li>
+          <li>&gt;85% nefron rusak permanen</li>
+          <li>Uremia: akumulasi toksin dalam darah</li>
+          <li>Hiperkalemia: risiko henti jantung</li>
+          <li>Edema: retensi cairan berlebih</li>
+          <li>Anemia: produksi EPO terhenti</li>
+          <li>Tanpa terapi pengganti → fatal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svg-card">
+      <svg width="100%" viewBox="0 0 880 200" style="min-width:600px">
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#e85c3a" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+          <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#0d9e75" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+          <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#9aa0ab" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+        </defs>
+        <!-- Kotor -->
+        <rect x="20" y="60" width="140" height="80" rx="10" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+        <text x="90" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Darah kotor</text>
+        <text x="90" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">urea · kreatinin · fosfat</text>
+        <!-- Arrow 1 -->
+        <line x1="162" y1="100" x2="196" y2="100" stroke="#e85c3a" stroke-width="1.8" marker-end="url(#a1)"/>
+        <!-- Ginjal -->
+        <rect x="198" y="40" width="180" height="120" rx="12" fill="#e1f5ee" stroke="#0d9e75" stroke-width="1"/>
+        <text x="288" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Ginjal sehat</text>
+        <text x="288" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">180 L/hari difilter</text>
+        <text x="288" y="116" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">1 juta nefron</text>
+        <text x="288" y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">regulasi elektrolit</text>
+        <!-- Arrow ke bersih -->
+        <line x1="380" y1="76" x2="414" y2="68" stroke="#0d9e75" stroke-width="1.8" marker-end="url(#a2)"/>
+        <!-- Arrow ke urin -->
+        <line x1="380" y1="124" x2="414" y2="132" stroke="#9aa0ab" stroke-width="1.8" marker-end="url(#a3)"/>
+        <!-- Bersih -->
+        <rect x="416" y="44" width="160" height="50" rx="8" fill="#e8f1fb" stroke="#1a6fc4" stroke-width="1"/>
+        <text x="496" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Darah bersih</text>
+        <text x="496" y="83" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">kembali ke sirkulasi</text>
+        <!-- Urin -->
+        <rect x="416" y="106" width="160" height="50" rx="8" fill="#f5f6f8" stroke="#9aa0ab" stroke-width="1"/>
+        <text x="496" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Urin</text>
+        <text x="496" y="145" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">toksin + air berlebih</text>
+
+        <!-- GAGAL GINJAL SISI KANAN -->
+        <line x1="620" y1="100" x2="654" y2="100" stroke="#e85c3a" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="580" y="40" width="34" height="120" rx="4" fill="#f5f6f8" stroke="#dde1e8" stroke-width="0.5"/>
+        <text x="597" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#9aa0ab">vs</text>
+
+        <rect x="656" y="40" width="180" height="120" rx="12" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+        <text x="746" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Ginjal gagal (CKD)</text>
+        <text x="746" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">GFR &lt;15 mL/min</text>
+        <text x="746" y="110" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">nefron rusak &gt;85%</text>
+        <text x="746" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">toksin tidak tersaring</text>
+        <text x="746" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e85c3a" font-weight="600">→ uremia, edema, kematian</text>
+
+        <text x="440" y="190" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">Hemodialisa menggantikan fungsi ginjal yang hilang ini — 3x seminggu, 4–5 jam per sesi</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SESI 1.2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <span class="section-num">Sesi 1.2</span>
+      <div>
+        <div class="section-title">Prinsip Kerja Hemodialisa</div>
+        <div class="section-subtitle">Dua mekanisme utama: difusi dan ultrafiltrasi</div>
+      </div>
+    </div>
+
+    <!-- Tabs prinsip -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('prinsip','p-alur')">Alur treatment</button>
+      <button class="tab-btn" onclick="showTab('prinsip','p-difusi')">Difusi</button>
+      <button class="tab-btn" onclick="showTab('prinsip','p-uf')">Ultrafiltrasi</button>
+      <button class="tab-btn" onclick="showTab('prinsip','p-counter')">Counter-current flow</button>
+    </div>
+
+    <div id="p-alur" class="tab-panel active">
+      <div class="svg-card">
+        <svg width="100%" viewBox="0 0 860 180" style="min-width:580px">
+          <defs>
+            <marker id="ba" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#e85c3a" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+            <marker id="ga" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#1a6fc4" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+            <marker id="ta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#0d9e75" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <!-- Pasien -->
+          <rect x="10" y="55" width="100" height="70" rx="8" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+          <text x="60" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Pasien</text>
+          <text x="60" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">AV Fistula/CVC</text>
+          <!-- Arrow arterial -->
+          <line x1="112" y1="80" x2="146" y2="80" stroke="#e85c3a" stroke-width="1.8" marker-end="url(#ba)"/>
+          <text x="129" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#e85c3a">Arterial</text>
+          <!-- Blood pump -->
+          <rect x="148" y="58" width="120" height="44" rx="8" fill="#f5f6f8" stroke="#9aa0ab" stroke-width="1"/>
+          <text x="208" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Blood pump</text>
+          <text x="208" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">50–600 mL/min</text>
+          <!-- Arrow ke dializer -->
+          <line x1="270" y1="80" x2="304" y2="80" stroke="#e85c3a" stroke-width="1.8" marker-end="url(#ba)"/>
+          <!-- Dializer -->
+          <rect x="306" y="40" width="160" height="100" rx="10" fill="#e1f5ee" stroke="#0d9e75" stroke-width="1.5"/>
+          <text x="386" y="74" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Dializer</text>
+          <text x="386" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">membran semipermeabel</text>
+          <text x="386" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">difusi + ultrafiltrasi</text>
+          <text x="386" y="124" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#0d9e75">1.4 – 2.4 m²</text>
+          <!-- Arrow ke air detect -->
+          <line x1="468" y1="80" x2="502" y2="80" stroke="#0d9e75" stroke-width="1.8" marker-end="url(#ta)"/>
+          <!-- Air detector -->
+          <rect x="504" y="58" width="130" height="44" rx="8" fill="#f5f6f8" stroke="#9aa0ab" stroke-width="1"/>
+          <text x="569" y="76" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Air detector</text>
+          <text x="569" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">≥20 µL single bubble</text>
+          <!-- Arrow ke pasien -->
+          <line x1="636" y1="80" x2="670" y2="80" stroke="#0d9e75" stroke-width="1.8" marker-end="url(#ta)"/>
+          <text x="653" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#0d9e75">Venous</text>
+          <!-- Pasien kanan -->
+          <rect x="672" y="55" width="100" height="70" rx="8" fill="#e1f5ee" stroke="#0d9e75" stroke-width="1"/>
+          <text x="722" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Pasien</text>
+          <text x="722" y="104" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">darah bersih</text>
+          <!-- Dialisat bawah -->
+          <text x="386" y="160" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#1a6fc4">Dialisat masuk (fresh) ←→ Dialisat keluar (spent) menuju drain</text>
+        </svg>
+      </div>
+    </div>
+
+    <div id="p-difusi" class="tab-panel">
+      <div class="svg-card">
+        <svg width="100%" viewBox="0 0 680 240" style="min-width:500px">
+          <!-- Kompartemen darah -->
+          <rect x="30" y="40" width="260" height="170" rx="10" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+          <text x="160" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Darah (konsentrasi tinggi)</text>
+          <text x="160" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Urea ↑↑</text>
+          <text x="160" y="110" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Kreatinin ↑↑</text>
+          <text x="160" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Fosfat ↑↑</text>
+          <text x="160" y="146" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">K+ ↑↑</text>
+          <text x="160" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">Albumin (69 kDa — tidak lolos)</text>
+          <!-- Membran -->
+          <rect x="295" y="40" width="30" height="170" rx="4" fill="#eeedfe" stroke="#6b4fd8" stroke-width="1"/>
+          <text x="310" y="130" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#6b4fd8" transform="rotate(-90,310,130)">Membran semipermeabel</text>
+          <!-- Arrows difusi -->
+          <line x1="290" y1="88" x2="326" y2="88" stroke="#e85c3a" stroke-width="2">
+            <animate attributeName="x1" values="280;292;280" dur="2s" repeatCount="indefinite"/>
+          </line>
+          <polygon points="326,84 334,88 326,92" fill="#e85c3a"/>
+          <line x1="290" y1="115" x2="326" y2="115" stroke="#e85c3a" stroke-width="2"/>
+          <polygon points="326,111 334,115 326,119" fill="#e85c3a"/>
+          <!-- Arrow balik HCO3 -->
+          <line x1="334" y1="150" x2="298" y2="150" stroke="#1a6fc4" stroke-width="2"/>
+          <polygon points="298,146 290,150 298,154" fill="#1a6fc4"/>
+          <!-- Kompartemen dialisat -->
+          <rect x="328" y="40" width="260" height="170" rx="10" fill="#e8f1fb" stroke="#1a6fc4" stroke-width="1"/>
+          <text x="458" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Dialisat (konsentrasi rendah)</text>
+          <text x="458" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Urea ≈ 0</text>
+          <text x="458" y="110" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">HCO3- optimal (25 mmol/L)</text>
+          <text x="458" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Na+ 140 mmol/L</text>
+          <text x="458" y="146" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5a6070">Ca2+ fisiologis</text>
+          <text x="458" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">Aliran: 300–700 mL/min</text>
+          <text x="340" y="224" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">Difusi: perpindahan zat dari konsentrasi tinggi → rendah melalui gradien konsentrasi</text>
+        </svg>
+      </div>
+    </div>
+
+    <div id="p-uf" class="tab-panel">
+      <div class="principle-row">
+        <div class="principle-card">
+          <div class="icon-wrap" style="background:var(--teal-pale)">💧</div>
+          <h3>Ultrafiltrasi (UF)</h3>
+          <p>Proses pembuangan cairan berlebih dari darah melalui perbedaan tekanan yang disebut <strong>Transmembrane Pressure (TMP)</strong>. Mesin menciptakan tekanan di sisi darah lebih tinggi dari sisi dialisat, memaksa air melewati membran.</p>
+        </div>
+        <div class="principle-card">
+          <div class="icon-wrap" style="background:var(--blue-pale)">⚖️</div>
+          <h3>TMP pada DORA-6000</h3>
+          <p>Rentang TMP: <strong>-100 hingga +500 mmHg</strong> dengan akurasi ±20 mmHg. UF rate dapat diatur dari 0 hingga 3.600 mL/jam dengan akurasi ±1%. Pompa keramik memastikan kontrol yang presisi dan konsisten.</p>
+        </div>
+      </div>
+      <div class="svg-card">
+        <svg width="100%" viewBox="0 0 680 160" style="min-width:480px">
+          <text x="340" y="24" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Mekanisme ultrafiltrasi — tekanan mendorong air keluar</text>
+          <rect x="40" y="44" width="240" height="80" rx="8" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+          <text x="160" y="78" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Darah (tekanan tinggi)</text>
+          <text x="160" y="96" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">Tekanan hidrostatik besar</text>
+          <rect x="286" y="44" width="20" height="80" rx="4" fill="#eeedfe" stroke="#6b4fd8" stroke-width="1"/>
+          <!-- Arrows UF -->
+          <line x1="306" y1="62" x2="346" y2="62" stroke="#1a6fc4" stroke-width="1.8" marker-end="url(#ga)" id="uf1"/>
+          <line x1="306" y1="82" x2="346" y2="82" stroke="#1a6fc4" stroke-width="1.8" marker-end="url(#ga)" id="uf2"/>
+          <line x1="306" y1="102" x2="346" y2="102" stroke="#1a6fc4" stroke-width="1.8" marker-end="url(#ga)" id="uf3"/>
+          <text x="326" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#1a6fc4">H₂O</text>
+          <rect x="348" y="44" width="240" height="80" rx="8" fill="#e8f1fb" stroke="#1a6fc4" stroke-width="1"/>
+          <text x="468" y="78" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0a1628">Dialisat (tekanan rendah)</text>
+          <text x="468" y="96" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5a6070">+ air yang dibuang → drain</text>
+          <text x="340" y="148" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">DORA-6000: pompa keramik kontrol UF 0–3600 mL/jam | akurasi ±1%</text>
+          <defs>
+            <marker id="ga" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#1a6fc4" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div id="p-counter" class="tab-panel">
+      <div class="svg-card">
+        <svg width="100%" viewBox="0 0 680 200" style="min-width:480px">
+          <defs>
+            <marker id="ra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#e85c3a" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+            <marker id="la" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#1a6fc4" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <text x="340" y="26" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0a1628">Counter-current flow — efisiensi klirens maksimal</text>
+          <!-- Labels -->
+          <text x="80" y="55" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#e85c3a">Darah masuk</text>
+          <text x="80" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">(kotor — urea tinggi)</text>
+          <text x="600" y="55" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0d9e75">Darah keluar</text>
+          <text x="600" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">(bersih — urea rendah)</text>
+          <!-- Darah arrow kanan -->
+          <line x1="130" y1="95" x2="550" y2="95" stroke="#e85c3a" stroke-width="2.5" marker-end="url(#ra)"/>
+          <rect x="130" y="80" width="420" height="30" rx="6" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1" opacity="0.5"/>
+          <text x="340" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#e85c3a">→ Aliran darah →</text>
+          <!-- Dialisat arrow kiri -->
+          <line x1="550" y1="135" x2="130" y2="135" stroke="#1a6fc4" stroke-width="2.5" marker-end="url(#la)"/>
+          <rect x="130" y="120" width="420" height="30" rx="6" fill="#e8f1fb" stroke="#1a6fc4" stroke-width="1" opacity="0.5"/>
+          <text x="340" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#1a6fc4">← Aliran dialisat ←</text>
+          <!-- Label dialisat -->
+          <text x="600" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">Dialisat segar masuk</text>
+          <text x="80" y="155" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">Dialisat terpakai</text>
+          <text x="80" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">→ drain</text>
+          <text x="340" y="185" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#9aa0ab">Arah berlawanan menjaga gradien konsentrasi maksimal sepanjang dializer → klirens lebih efisien</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SESI 1.3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <span class="section-num">Sesi 1.3</span>
+      <div>
+        <div class="section-title">Anatomi DORA-6000</div>
+        <div class="section-subtitle">Mengenal setiap komponen — sirkuit darah & sirkuit dialisat</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('anatomi','a-overview')">Overview struktur</button>
+      <button class="tab-btn" onclick="showTab('anatomi','a-darah')">Sirkuit darah</button>
+      <button class="tab-btn" onclick="showTab('anatomi','a-dialisat')">Sirkuit dialisat</button>
+      <button class="tab-btn" onclick="showTab('anatomi','a-safety')">Sistem keamanan</button>
+    </div>
+
+    <div id="a-overview" class="tab-panel active">
+      <div class="svg-card" style="margin-bottom:16px">
+        <svg width="100%" viewBox="0 0 860 260" style="min-width:600px">
+          <!-- Sirkuit Darah -->
+          <rect x="20" y="20" width="390" height="220" rx="14" fill="#fdf0ec" stroke="#e85c3a" stroke-width="1"/>
+          <text x="215" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0a1628">Sirkuit Darah (Ekstrakorporeal)</text>
+          <!-- komponen darah -->
+          <rect x="40" y="64" width="160" height="38" rx="6" fill="#ffffff" stroke="#e85c3a" stroke-width="0.8"/>
+          <text x="120" y="80" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Akses vaskular</text>
+          <text x="120" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">AV fistula / CVC / graft</text>
+          <rect x="220" y="64" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="300" y="80" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Blood pump</text>
+          <text x="300" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">50–600 mL/min</text>
+          <rect x="40" y="118" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="120" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Heparin pump</text>
+          <text x="120" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">0.3–10 mL/jam</text>
+          <rect x="220" y="118" width="160" height="38" rx="6" fill="#e1f5ee" stroke="#0d9e75" stroke-width="1"/>
+          <text x="300" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Dializer</text>
+          <text x="300" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">1.4–2.4 m² | PES</text>
+          <rect x="40" y="172" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="120" y="188" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Air detector</text>
+          <text x="120" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">≥20 µL bubble</text>
+          <rect x="220" y="172" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="300" y="188" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Pressure ports</text>
+          <text x="300" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">ART / VEN / TMP</text>
+
+          <!-- VS -->
+          <text x="430" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" fill="#9aa0ab" font-weight="300">+</text>
+
+          <!-- Sirkuit Dialisat -->
+          <rect x="450" y="20" width="390" height="220" rx="14" fill="#e8f1fb" stroke="#1a6fc4" stroke-width="1"/>
+          <text x="645" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0a1628">Sirkuit Dialisat (Hidrolik)</text>
+          <rect x="470" y="64" width="160" height="38" rx="6" fill="#ffffff" stroke="#1a6fc4" stroke-width="0.8"/>
+          <text x="550" y="80" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Supply air (RO)</text>
+          <text x="550" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">1–3 bar | 5–30°C</text>
+          <rect x="650" y="64" width="160" height="38" rx="6" fill="#ffffff" stroke="#6b4fd8" stroke-width="0.8"/>
+          <text x="730" y="80" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Mixing konsentrat</text>
+          <text x="730" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">pompa A+B / bicart</text>
+          <rect x="470" y="118" width="160" height="38" rx="6" fill="#ffffff" stroke="#6b4fd8" stroke-width="0.8"/>
+          <text x="550" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Heat exchanger</text>
+          <text x="550" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">35–39°C</text>
+          <rect x="650" y="118" width="160" height="38" rx="6" fill="#e1f5ee" stroke="#0d9e75" stroke-width="1"/>
+          <text x="730" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Endotoxin filter</text>
+          <text x="730" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">ultrapure dialysate</text>
+          <rect x="470" y="172" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="550" y="188" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Balance chamber</text>
+          <text x="550" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">+ pompa UF keramik</text>
+          <rect x="650" y="172" width="160" height="38" rx="6" fill="#ffffff" stroke="#9aa0ab" stroke-width="0.8"/>
+          <text x="730" y="188" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#0a1628">Blood leak detector</text>
+          <text x="730" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5a6070">≤0.35 mL/min</text>
+        </svg>
+      </div>
+    </div>
+
+    <div id="a-darah" class="tab-panel">
+      <div class="svg-card">
+        <table class="anatomy-table" style="border-radius:8px;overflow:hidden">
+          <tr><th>Komponen</th><th>Fungsi</th><th>Parameter Kunci</th><th>Catatan</th></tr>
+          <tr><td><span class="comp-name">Akses Vaskular</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Jalan masuk/keluar darah pasien</td><td>AV Fistula / CVC / Graft</td><td>Perlu diperiksa sebelum setiap sesi</td></tr>
+          <tr><td><span class="comp-name">Blood Pump</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Memompa darah melalui sirkuit dengan kecepatan terkontrol</td><td>50–600 mL/min<br>Roller pump</td><td>Knob fisik + digital button</td></tr>
+          <tr><td><span class="comp-name">Heparin Pump</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Mencegah pembekuan darah di sirkuit</td><td>0.3–10 mL/jam<br>Syringe: 10/20/30 mL</td><td>Auto-recognition ukuran syringe</td></tr>
+          <tr><td><span class="comp-name">Arterial Pressure Port</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Monitor tekanan sebelum blood pump</td><td>-400 ~ +400 mmHg<br>±10 mmHg akurasi</td><td>Alarm jika di luar batas</td></tr>
+          <tr><td><span class="comp-name">Dializer</span><br><span class="circuit-badge badge-shared">Shared</span></td><td>Membran tempat difusi & UF terjadi</td><td>1.4–2.4 m² luas<br>Membran PES</td><td>Kompatibel multiple jenis</td></tr>
+          <tr><td><span class="comp-name">Air Detector (BLDP)</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Mendeteksi gelembung udara di jalur venous</td><td>Single: ≥20 µL<br>Continuous: ≥10 µL</td><td>Memicu clamp & alarm langsung</td></tr>
+          <tr><td><span class="comp-name">Venous Pressure Port</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Monitor tekanan setelah dializer</td><td>-100 ~ +400 mmHg<br>±10 mmHg</td><td>Indikasi resistansi akses vena</td></tr>
+          <tr><td><span class="comp-name">Venous Clamp</span><br><span class="circuit-badge badge-darah">Darah</span></td><td>Menutup jalur venous saat alarm</td><td>Otomatis + manual</td><td>Dual interlock SW+HW</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="a-dialisat" class="tab-panel">
+      <div class="svg-card">
+        <table class="anatomy-table" style="border-radius:8px;overflow:hidden">
+          <tr><th>Komponen</th><th>Fungsi</th><th>Parameter Kunci</th><th>Catatan</th></tr>
+          <tr><td><span class="comp-name">Water Supply</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Sumber air RO yang masuk ke mesin</td><td>1–3 bar inlet<br>5–30°C</td><td>Pastikan RO sesuai standar AAMI</td></tr>
+          <tr><td><span class="comp-name">Pompa Konsentrat A</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Menyedot konsentrat asam (elektrolit)</td><td>Peristaltik independen</td><td>Port penyerapan A (warna biru)</td></tr>
+          <tr><td><span class="comp-name">Bicart/Bicarbonate</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Menyediakan buffer bikarbonat</td><td>Cartridge B-20H</td><td>Eliminasi risiko kontaminasi</td></tr>
+          <tr><td><span class="comp-name">Heat Exchanger</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Memanaskan dialisat ke suhu fisiologis</td><td>35–39°C<br>±0.5°C akurasi</td><td>Efisiensi energi tinggi</td></tr>
+          <tr><td><span class="comp-name">Konduktivitas Sensor</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Memastikan komposisi dialisat tepat</td><td>0–16 mS/cm<br>±0.1 mS/cm</td><td>Termasuk bikarbonat conductivity</td></tr>
+          <tr><td><span class="comp-name">Endotoxin Filter</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Menyaring endotoksin → dialisat ultrapur</td><td>Standar ultrapure</td><td>Kunci fitur online HDF-ready</td></tr>
+          <tr><td><span class="comp-name">Balance Chamber</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Memastikan volume dialisat masuk = keluar ± UF</td><td>Akurasi keseimbangan tinggi</td><td>Berpasangan dengan UF pump</td></tr>
+          <tr><td><span class="comp-name">Pompa UF Keramik</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Kontrol presisi volume ultrafiltrasi</td><td>0–3600 mL/jam<br>±1% akurasi</td><td>Keramik = awet + presisi</td></tr>
+          <tr><td><span class="comp-name">Blood Leak Detector</span><br><span class="circuit-badge badge-dialisat">Dialisat</span></td><td>Deteksi kebocoran membran dializer</td><td>≤0.35 mL/min (HCT 32%)</td><td>Alarm + bypass otomatis</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="a-safety" class="tab-panel">
+      <div class="concept-grid">
+        <div class="concept-box">
+          <h3><span class="dot" style="background:var(--coral)"></span>Sistem Proteksi Triple (DLF+MON+UI)</h3>
+          <ul>
+            <li><strong>DLF</strong>: Data logging & fault detection</li>
+            <li><strong>MON</strong>: Monitoring real-time semua parameter</li>
+            <li><strong>UI</strong>: User interface alarm visual & audio</li>
+            <li>Dual interlock software + hardware</li>
+            <li>Self-test otomatis tiap 30 menit saat treatment</li>
+          </ul>
+        </div>
+        <div class="concept-box">
+          <h3><span class="dot" style="background:var(--amber)"></span>Alarm Utama yang Dipantau</h3>
+          <ul>
+            <li>Arterial pressure out of range</li>
+            <li>Venous pressure out of range</li>
+            <li>TMP abnormal</li>
+            <li>Blood leak detected</li>
+            <li>Air/bubble detected</li>
+            <li>Conductivity out of range</li>
+            <li>Temperature out of range</li>
+          </ul>
+        </div>
+        <div class="concept-box">
+          <h3><span class="dot" style="background:var(--blue)"></span>Proteksi Elektromagnetik</h3>
+          <ul>
+            <li>Level 4 EMC protection</li>
+            <li>Sesuai standar internasional & EU</li>
+            <li>Battery backup: 30 menit otomatis</li>
+            <li>Saat listrik padam: pompa tetap jalan</li>
+          </ul>
+        </div>
+        <div class="concept-box">
+          <h3><span class="dot" style="background:var(--purple)"></span>Monitoring Kepatutan Dialisis</h3>
+          <ul>
+            <li>Online Clearance Monitoring (OCM)</li>
+            <li>Kt/V monitoring real-time</li>
+            <li>Urea Removal Index (URI)</li>
+            <li>Data tercatat & dapat diakses di menu Log</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SESI 1.4 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <span class="section-num">Sesi 1.4</span>
+      <div>
+        <div class="section-title">Spesifikasi Teknis DORA-6000</div>
+        <div class="section-subtitle">Angka-angka kunci yang perlu dikuasai — operasional & komersial</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:var(--teal);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">Sirkuit Darah</div>
+    <div class="spec-grid" style="margin-bottom:24px">
+      <div class="spec-card teal"><div class="label">Blood flow</div><div class="value">50–600</div><div class="unit">mL/min</div></div>
+      <div class="spec-card coral"><div class="label">Arterial pressure</div><div class="value">-400~+400</div><div class="unit">mmHg | ±10 akurasi</div></div>
+      <div class="spec-card coral"><div class="label">Venous pressure</div><div class="value">-100~+400</div><div class="unit">mmHg | ±10 akurasi</div></div>
+      <div class="spec-card coral"><div class="label">TMP</div><div class="value">-100~+500</div><div class="unit">mmHg | ±20 akurasi</div></div>
+      <div class="spec-card blue"><div class="label">Heparin pump</div><div class="value">0.3–10</div><div class="unit">mL/jam | syringe 10/20/30 mL</div></div>
+      <div class="spec-card blue"><div class="label">Air detector</div><div class="value">≥20 µL</div><div class="unit">single | ≥10 µL continuous</div></div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">Sirkuit Dialisat</div>
+    <div class="spec-grid" style="margin-bottom:24px">
+      <div class="spec-card teal"><div class="label">Dialysate flow</div><div class="value">300–700</div><div class="unit">mL/min</div></div>
+      <div class="spec-card teal"><div class="label">UF rate</div><div class="value">0–3600</div><div class="unit">mL/jam | ±1% akurasi</div></div>
+      <div class="spec-card amber"><div class="label">Suhu dialisat</div><div class="value">35–39</div><div class="unit">°C (setting range)</div></div>
+      <div class="spec-card amber"><div class="label">Konduktivitas</div><div class="value">0–16</div><div class="unit">mS/cm | ±0.1 akurasi</div></div>
+      <div class="spec-card coral"><div class="label">Blood leak sensitivity</div><div class="value">≤0.35</div><div class="unit">mL/min (HCT 32%)</div></div>
+      <div class="spec-card blue"><div class="label">Water inlet pressure</div><div class="value">1–3</div><div class="unit">bar | 5–30°C suhu</div></div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;">Umum & Power</div>
+    <div class="spec-grid" style="margin-bottom:24px">
+      <div class="spec-card"><div class="label">Dimensi</div><div class="value" style="font-size:16px">1600×550×800</div><div class="unit">mm (H×W×D)</div></div>
+      <div class="spec-card"><div class="label">Bobot</div><div class="value">~83</div><div class="unit">kg</div></div>
+      <div class="spec-card"><div class="label">Power supply</div><div class="value">230V</div><div class="unit">AC ±10% | 50Hz | 2.1 kVA</div></div>
+      <div class="spec-card"><div class="label">Battery backup</div><div class="value">30</div><div class="unit">menit otomatis</div></div>
+      <div class="spec-card"><div class="label">Display</div><div class="value">15"</div><div class="unit">rotatable touchscreen</div></div>
+      <div class="spec-card"><div class="label">Sertifikasi</div><div class="value">CE</div><div class="unit">1639 | EMC Level 4</div></div>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:var(--navy);margin-bottom:12px;">Mode Desinfeksi (4 opsi)</div>
+    <div class="dis-grid">
+      <div class="dis-card"><div class="dis-name">Peracetic acid</div><div class="dis-desc">Recirculation — efektif, residual rendah</div></div>
+      <div class="dis-card"><div class="dis-name">Hot citric acid 85°C</div><div class="dis-desc">Thermal + chemical — level desinfeksi tinggi</div></div>
+      <div class="dis-card"><div class="dis-name">Sodium hypochlorite</div><div class="dis-desc">Recirculation — NaOCl standar</div></div>
+      <div class="dis-card"><div class="dis-name">Acetic acid</div><div class="dis-desc">Recirculation — pembersih scale</div></div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SESI 1.5 LATIHAN -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <span class="section-num">Sesi 1.5</span>
+      <div>
+        <div class="section-title">Latihan Pemahaman</div>
+        <div class="section-subtitle">Uji pengetahuan Anda sebelum lanjut ke Modul 2</div>
+      </div>
+    </div>
+
+    <div class="quiz-box">
+      <h3>📋 Kuis Modul 1</h3>
+
+      <!-- Q1 -->
+      <div class="quiz-q" id="q1">
+        <div class="q-text">1. Berapa kecepatan aliran darah (blood flow) maksimum pada DORA-6000?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">A</span>300 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">B</span>400 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q1',true)"><span class="opt-letter">C</span>600 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q1',false)"><span class="opt-letter">D</span>800 mL/min</div>
+        </div>
+        <div class="quiz-feedback" id="fb-q1"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-q" id="q2">
+        <div class="q-text">2. Apa fungsi dari Endotoxin Filter pada DORA-6000?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">A</span>Menyaring udara dari sirkuit darah</div>
+          <div class="quiz-opt" onclick="answer(this,'q2',true)"><span class="opt-letter">B</span>Menyaring endotoksin dari dialisat untuk mencapai standar ultrapur</div>
+          <div class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">C</span>Mengukur konduktivitas dialisat</div>
+          <div class="quiz-opt" onclick="answer(this,'q2',false)"><span class="opt-letter">D</span>Mendeteksi kebocoran darah di dialisat</div>
+        </div>
+        <div class="quiz-feedback" id="fb-q2"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-q" id="q3">
+        <div class="q-text">3. Berapa lama battery backup DORA-6000 bekerja setelah listrik padam?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">A</span>10 menit</div>
+          <div class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">B</span>20 menit</div>
+          <div class="quiz-opt" onclick="answer(this,'q3',true)"><span class="opt-letter">C</span>30 menit</div>
+          <div class="quiz-opt" onclick="answer(this,'q3',false)"><span class="opt-letter">D</span>60 menit</div>
+        </div>
+        <div class="quiz-feedback" id="fb-q3"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-q" id="q4">
+        <div class="q-text">4. Mekanisme apa yang digunakan DORA-6000 untuk membuang cairan berlebih dari tubuh pasien?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">A</span>Difusi</div>
+          <div class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">B</span>Osmosis</div>
+          <div class="quiz-opt" onclick="answer(this,'q4',true)"><span class="opt-letter">C</span>Ultrafiltrasi (tekanan TMP)</div>
+          <div class="quiz-opt" onclick="answer(this,'q4',false)"><span class="opt-letter">D</span>Konveksi murni</div>
+        </div>
+        <div class="quiz-feedback" id="fb-q4"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-q" id="q5">
+        <div class="q-text">5. Sensitivitas blood leak detector DORA-6000 pada HCT 32% adalah…</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">A</span>≤1.0 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q5',true)"><span class="opt-letter">B</span>≤0.35 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">C</span>≤0.5 mL/min</div>
+          <div class="quiz-opt" onclick="answer(this,'q5',false)"><span class="opt-letter">D</span>≤2.0 mL/min</div>
+        </div>
+        <div class="quiz-feedback" id="fb-q5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SUMMARY -->
+  <div class="summary-box">
+    <h2>Ringkasan Modul 1</h2>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <h4>Mengapa HD?</h4>
+        <ul>
+          <li>GFR &lt;15 = gagal ginjal stadium 5</li>
+          <li>Urea, kreatinin, fosfat menumpuk</li>
+          <li>HD 3x seminggu, 4–5 jam/sesi</li>
+          <li>Difusi + ultrafiltrasi</li>
+          <li>Counter-current flow = efisiensi max</li>
+        </ul>
+      </div>
+      <div class="summary-item">
+        <h4>Struktur DORA-6000</h4>
+        <ul>
+          <li>Sirkuit darah: 7 komponen</li>
+          <li>Sirkuit dialisat: 8 komponen</li>
+          <li>Blood pump 50–600 mL/min</li>
+          <li>Dializer PES 1.4–2.4 m²</li>
+          <li>Endotoxin filter ultrapur</li>
+        </ul>
+      </div>
+      <div class="summary-item">
+        <h4>Spesifikasi Kunci</h4>
+        <ul>
+          <li>UF rate 0–3600 mL/jam ±1%</li>
+          <li>Suhu dialisat 35–39°C</li>
+          <li>Battery backup 30 menit</li>
+          <li>CE 1639 | EMC Level 4</li>
+          <li>4 mode desinfeksi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;padding-bottom:20px">
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px">Modul 1 selesai — siap lanjutkan ke prosedur operasional?</p>
+    <a class="next-btn" href="#">
+      Lanjut ke Modul 2 — Operasional DORA-6000
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div><!-- end main -->
+
+<script>
+function scrollTo(id, el) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function showTab(group, id) {
+  const btns = event.target.parentElement.querySelectorAll('.tab-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  const panels = event.target.closest('.section').querySelectorAll('.tab-panel');
+  panels.forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function answer(el, qId, correct) {
+  const q = document.getElementById(qId);
+  if (q.dataset.answered) return;
+  q.dataset.answered = '1';
+  const opts = q.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.style.pointerEvents = 'none');
+  el.classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) {
+    opts.forEach(o => {
+      if (o.onclick && o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  const fb = document.getElementById('fb-' + qId);
+  fb.classList.add('show', correct ? 'correct' : 'wrong');
+  const msgs = {
+    'q1': { ok: 'Benar! Blood flow DORA-6000: 0 dan 50–600 mL/min.', wrong: 'Kurang tepat. Maksimum adalah 600 mL/min.' },
+    'q2': { ok: 'Benar! Endotoxin filter menyaring endotoksin → dialisat ultrapur, kritis untuk kualitas treatment.', wrong: 'Kurang tepat. Endotoxin filter berfungsi menyaring endotoksin dari jalur dialisat.' },
+    'q3': { ok: 'Benar! 30 menit — cukup waktu untuk menyelesaikan atau menghentikan treatment dengan aman.', wrong: 'Kurang tepat. DORA-6000 menyediakan 30 menit backup otomatis.' },
+    'q4': { ok: 'Benar! Ultrafiltrasi menggunakan perbedaan tekanan (TMP) untuk mendorong air melewati membran.', wrong: 'Kurang tepat. Pembuangan cairan berlebih menggunakan ultrafiltrasi (TMP).' },
+    'q5': { ok: 'Benar! ≤0.35 mL/min pada HCT 32% — sangat sensitif untuk keamanan pasien.', wrong: 'Kurang tepat. Sensitivitasnya adalah ≤0.35 mL/min pada HCT 32%.' }
+  };
+  fb.textContent = correct ? msgs[qId].ok : msgs[qId].wrong;
+}
+
+window.addEventListener('scroll', () => {
+  const sections = ['s1','s2','s3','s4','s5'];
+  const navItems = document.querySelectorAll('.nav-item');
+  let active = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 120) active = i;
+  });
+  navItems.forEach((n, i) => n.classList.toggle('active', i === active));
+});
+</script>
+</body>
+</html>

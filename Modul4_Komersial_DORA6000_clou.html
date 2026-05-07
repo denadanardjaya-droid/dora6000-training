@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 4 — Komersial & Disposable DORA-6000</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800&family=Literata:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fb;
+  --bg2:#ffffff;
+  --bg3:#f0f2f8;
+  --panel:#ffffff;
+  --navy:#0f1d3a;
+  --indigo:#3d52d5;
+  --indigo2:#2e3fb8;
+  --indigo-pale:rgba(61,82,213,0.07);
+  --indigo-border:rgba(61,82,213,0.18);
+  --violet:#7c3aed;
+  --violet-pale:rgba(124,58,237,0.07);
+  --violet-border:rgba(124,58,237,0.18);
+  --teal:#0891b2;
+  --teal-pale:rgba(8,145,178,0.07);
+  --rose:#e11d48;
+  --rose-pale:rgba(225,29,72,0.07);
+  --amber:#d97706;
+  --amber-pale:rgba(217,119,6,0.07);
+  --green:#059669;
+  --green-pale:rgba(5,150,105,0.07);
+  --green-border:rgba(5,150,105,0.2);
+  --border:#e2e6f0;
+  --border2:#c8cedd;
+  --text:#1a2035;
+  --muted:#6474a0;
+  --dim:#9ba8c4;
+  --white:#ffffff;
+  --shadow:0 2px 12px rgba(15,29,58,0.08);
+  --shadow-lg:0 8px 32px rgba(15,29,58,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Cabinet Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:15px;
+  line-height:1.65;
+}
+
+/* HERO */
+.hero{
+  background:var(--navy);
+  padding:56px 56px 48px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:-120px;right:-120px;
+  width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(61,82,213,0.18) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:-80px;left:10%;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.crumb{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,0.35);letter-spacing:0.08em;margin-bottom:20px;
+}
+.crumb span{color:#a5b4fc;}
+h1{
+  font-size:clamp(34px,4.5vw,58px);font-weight:800;
+  color:#fff;line-height:1.05;margin-bottom:16px;position:relative;
+}
+h1 em{font-style:normal;color:#a5b4fc;}
+.hero-p{font-size:15px;color:rgba(255,255,255,0.52);max-width:580px;line-height:1.7;margin-bottom:36px;position:relative;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  padding:4px 12px;border-radius:20px;border:1px solid;letter-spacing:0.04em;
+}
+.pi{color:#a5b4fc;border-color:rgba(165,180,252,0.3);background:rgba(165,180,252,0.08);}
+.pv{color:#c4b5fd;border-color:rgba(196,181,253,0.3);background:rgba(196,181,253,0.08);}
+.pg{color:#6ee7b7;border-color:rgba(110,231,183,0.3);background:rgba(110,231,183,0.08);}
+
+/* NAV */
+.nav{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0 56px;display:flex;gap:0;
+  position:sticky;top:0;z-index:100;overflow-x:auto;
+  box-shadow:var(--shadow);
+}
+.nav::-webkit-scrollbar{display:none;}
+.nv{
+  padding:14px 16px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
+  transition:all .2s;white-space:nowrap;user-select:none;
+}
+.nv:hover{color:var(--indigo);}
+.nv.active{color:var(--indigo);border-bottom-color:var(--indigo);}
+
+/* MAIN */
+.main{max-width:980px;margin:0 auto;padding:44px 32px 100px;}
+
+/* SECTION */
+.sec{margin-bottom:56px;animation:fadeUp .4s ease both;}
+.sec:nth-child(2){animation-delay:.07s}
+.sec:nth-child(3){animation-delay:.14s}
+.sec:nth-child(4){animation-delay:.21s}
+.sec:nth-child(5){animation-delay:.28s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-hdr{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;}
+.sec-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--indigo);background:var(--indigo-pale);
+  border:1px solid var(--indigo-border);border-radius:6px;
+  padding:4px 10px;margin-top:5px;white-space:nowrap;letter-spacing:0.06em;
+}
+.sec-title{font-size:24px;font-weight:800;color:var(--navy);line-height:1.2;}
+.sec-sub{font-size:13px;color:var(--muted);margin-top:5px;}
+
+/* SEP */
+.sep{height:1px;background:var(--border);margin:44px 0;}
+
+/* CARD */
+.card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:24px 28px;
+  box-shadow:var(--shadow);margin-bottom:16px;
+}
+.card-sm{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:18px 20px;box-shadow:var(--shadow);
+}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.tb{
+  padding:7px 16px;border-radius:8px;border:1px solid var(--border2);
+  background:var(--bg3);color:var(--muted);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .18s;
+}
+.tb:hover{border-color:var(--indigo-border);color:var(--indigo);}
+.tb.active{background:var(--indigo-pale);color:var(--indigo);border-color:var(--indigo-border);}
+.tpanel{display:none;}
+.tpanel.active{display:block;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{
+  background:var(--bg3);color:var(--muted);padding:10px 14px;
+  text-align:left;font-size:11px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.tbl td{padding:10px 14px;border-bottom:1px solid var(--bg3);color:var(--text);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:#f8f9fe;}
+
+/* BADGE */
+.badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:10px;
+  font-family:'JetBrains Mono',monospace;border:1px solid;
+}
+.bi{color:var(--indigo);background:var(--indigo-pale);border-color:var(--indigo-border);}
+.bv{color:var(--violet);background:var(--violet-pale);border-color:var(--violet-border);}
+.bg{color:var(--green);background:var(--green-pale);border-color:var(--green-border);}
+.br{color:var(--rose);background:var(--rose-pale);border-color:rgba(225,29,72,0.2);}
+.ba{color:var(--amber);background:var(--amber-pale);border-color:rgba(217,119,6,0.2);}
+.bs{color:var(--muted);background:var(--bg3);border-color:var(--border2);}
+
+/* USP CARDS */
+.usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.usp-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:22px;box-shadow:var(--shadow);
+  border-top:3px solid;transition:transform .2s,box-shadow .2s;
+}
+.usp-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.usp-card.u-indigo{border-top-color:var(--indigo);}
+.usp-card.u-violet{border-top-color:var(--violet);}
+.usp-card.u-teal{border-top-color:var(--teal);}
+.usp-card.u-green{border-top-color:var(--green);}
+.usp-card.u-rose{border-top-color:var(--rose);}
+.usp-card.u-amber{border-top-color:var(--amber);}
+.usp-icon{font-size:26px;margin-bottom:12px;}
+.usp-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.usp-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.usp-tag{
+  margin-top:10px;font-size:11px;font-weight:600;
+  display:inline-block;padding:3px 9px;border-radius:6px;
+}
+
+/* COMPETITOR TABLE */
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table th{
+  padding:12px 14px;text-align:center;font-size:12px;font-weight:700;
+  border-bottom:2px solid var(--border);
+}
+.comp-table th:first-child{text-align:left;}
+.comp-table td{
+  padding:11px 14px;border-bottom:1px solid var(--bg3);
+  text-align:center;vertical-align:middle;
+}
+.comp-table td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:#f8f9fe;}
+.comp-dora th:nth-child(2){
+  background:var(--indigo-pale);color:var(--indigo);
+  border-bottom-color:var(--indigo);
+}
+.comp-dora td:nth-child(2){background:rgba(61,82,213,0.03);}
+.ck{color:var(--green);font-size:16px;font-weight:700;}
+.cx{color:var(--rose);font-size:16px;}
+.cm{color:var(--amber);}
+
+/* OBJECTION CARDS */
+.obj-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+  margin-bottom:12px;
+}
+.obj-q{
+  padding:16px 20px;cursor:pointer;user-select:none;
+  display:flex;align-items:flex-start;gap:12px;
+  transition:background .15s;
+}
+.obj-q:hover{background:var(--bg3);}
+.obj-icon{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.obj-q-text{font-size:14px;font-weight:600;color:var(--navy);flex:1;padding-top:6px;}
+.obj-arrow{font-size:11px;color:var(--dim);transition:transform .2s;margin-top:9px;flex-shrink:0;}
+.obj-card.open .obj-arrow{transform:rotate(180deg);}
+.obj-a{
+  display:none;padding:0 20px 20px 64px;
+  font-size:13px;color:var(--muted);line-height:1.7;
+  border-top:1px solid var(--bg3);
+}
+.obj-card.open .obj-a{display:block;padding-top:16px;}
+.obj-key{
+  margin-top:10px;padding:10px 14px;border-radius:8px;
+  font-size:12px;font-weight:600;color:var(--indigo);
+  background:var(--indigo-pale);border-left:3px solid var(--indigo);
+  line-height:1.5;
+}
+
+/* DIALIZER COMPARISON */
+.dial-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.dial-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:18px;box-shadow:var(--shadow);
+}
+.dial-series{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+  padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;
+  border:1px solid;
+}
+.ds-hf{color:var(--indigo);background:var(--indigo-pale);border-color:var(--indigo-border);}
+.ds-lf{color:var(--teal);background:var(--teal-pale);border-color:rgba(8,145,178,0.2);}
+.ds-h{color:var(--violet);background:var(--violet-pale);border-color:var(--violet-border);}
+.ds-l{color:var(--muted);background:var(--bg3);border-color:var(--border2);}
+.dial-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.dial-kv{font-size:22px;font-weight:800;color:var(--indigo);line-height:1;margin-bottom:2px;}
+.dial-ku{font-size:11px;color:var(--muted);}
+.dial-props{margin-top:12px;display:flex;flex-direction:column;gap:5px;}
+.dp{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;}
+.dp span{font-weight:600;color:var(--text);}
+.dial-use{
+  margin-top:12px;padding:8px 10px;border-radius:7px;
+  font-size:11px;color:var(--indigo);
+  background:var(--indigo-pale);font-weight:600;line-height:1.4;
+}
+
+/* SALES SIMULATION */
+.sim-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px;}
+.sim-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.sim-sub{font-size:12px;color:var(--muted);margin-bottom:20px;}
+.sim-scene{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;padding:18px;margin-bottom:14px;
+  font-size:13px;color:var(--text);line-height:1.7;
+}
+.sim-scene .role{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.role-buyer{color:var(--rose);}
+.role-sales{color:var(--indigo);}
+.sim-choices{display:flex;flex-direction:column;gap:8px;}
+.sim-opt{
+  padding:12px 16px;border-radius:10px;border:1.5px solid var(--border2);
+  cursor:pointer;font-size:13px;color:var(--muted);
+  background:var(--panel);transition:all .15s;user-select:none;
+}
+.sim-opt:hover{border-color:var(--indigo-border);color:var(--indigo);background:var(--indigo-pale);}
+.sim-opt.best{background:var(--green-pale);border-color:var(--green-border);color:var(--green);font-weight:600;}
+.sim-opt.ok{background:var(--amber-pale);border-color:rgba(217,119,6,0.2);color:var(--amber);}
+.sim-opt.bad{background:var(--rose-pale);border-color:rgba(225,29,72,0.2);color:var(--rose);}
+.sim-result{
+  display:none;margin-top:12px;padding:14px 16px;border-radius:10px;
+  font-size:13px;line-height:1.65;
+}
+.sim-result.show{display:block;}
+.sr-best{background:var(--green-pale);color:#065f46;border:1px solid var(--green-border);}
+.sr-ok{background:var(--amber-pale);color:#78350f;border:1px solid rgba(217,119,6,0.2);}
+.sr-bad{background:var(--rose-pale);color:#9f1239;border:1px solid rgba(225,29,72,0.2);}
+.sim-reset{
+  margin-top:10px;padding:8px 18px;border-radius:8px;
+  border:1px solid var(--border2);background:var(--bg3);
+  color:var(--muted);font-size:12px;cursor:pointer;font-weight:600;
+  display:none;
+}
+.sim-reset.show{display:inline-block;}
+
+/* STEPPER */
+.stepper{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:16px;position:relative;}
+.step:not(:last-child)::after{
+  content:'';position:absolute;left:17px;top:38px;bottom:0;
+  width:1px;background:var(--border);
+}
+.snum{
+  width:34px;height:34px;border-radius:50%;font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  position:relative;z-index:1;border:1.5px solid;
+}
+.si{color:var(--indigo);background:var(--indigo-pale);border-color:var(--indigo-border);}
+.sg{color:var(--green);background:var(--green-pale);border-color:var(--green-border);}
+.sd{background:var(--indigo);border-color:var(--indigo);color:#fff;font-size:15px;}
+.sbody{padding-bottom:22px;flex:1;}
+.stitle{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;padding-top:7px;}
+.sdesc{font-size:13px;color:var(--muted);line-height:1.65;}
+.snote{
+  margin-top:8px;padding:8px 12px;border-radius:7px;
+  font-size:12px;line-height:1.55;border-left:3px solid;
+}
+.ni{border-color:var(--indigo);background:var(--indigo-pale);color:#1e40af;}
+.ng{border-color:var(--green);background:var(--green-pale);color:#065f46;}
+.na{border-color:var(--amber);background:var(--amber-pale);color:#78350f;}
+.nr{border-color:var(--rose);background:var(--rose-pale);color:#9f1239;}
+
+/* QUIZ */
+.qbox{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:var(--shadow);}
+.qbox h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:22px;}
+.qq{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.qq:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0;}
+.qtext{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px;}
+.qopts{display:flex;flex-direction:column;gap:7px;}
+.qopt{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border-radius:8px;border:1.5px solid var(--border2);cursor:pointer;
+  font-size:13px;color:var(--muted);background:var(--bg3);
+  transition:all .15s;user-select:none;
+}
+.qopt:hover{border-color:var(--indigo-border);color:var(--indigo);}
+.qopt.correct{background:var(--green-pale);border-color:var(--green-border);color:var(--green);font-weight:600;}
+.qopt.wrong{background:var(--rose-pale);border-color:rgba(225,29,72,0.2);color:var(--rose);}
+.qltr{
+  width:22px;height:22px;border-radius:50%;background:var(--panel);
+  border:1px solid var(--border2);display:flex;align-items:center;
+  justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;
+}
+.qfb{margin-top:9px;font-size:12px;padding:8px 13px;border-radius:8px;display:none;}
+.qfb.show{display:block;}
+.qfb.correct{background:var(--green-pale);color:#065f46;border:1px solid var(--green-border);}
+.qfb.wrong{background:var(--rose-pale);color:#9f1239;border:1px solid rgba(225,29,72,0.2);}
+
+/* SUMMARY */
+.sum-final{
+  background:var(--navy);border-radius:16px;padding:36px 40px;color:#fff;
+  position:relative;overflow:hidden;
+}
+.sum-final::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(61,82,213,0.2) 0%,transparent 65%);
+}
+.sum-final h2{
+  font-size:22px;font-weight:800;color:#a5b4fc;margin-bottom:22px;position:relative;
+}
+.sg4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;}
+.sb4 h4{font-size:11px;font-weight:700;color:#a5b4fc;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:9px;}
+.sb4 ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.sb4 ul li{font-size:12px;color:rgba(255,255,255,0.55);padding-left:14px;position:relative;}
+.sb4 ul li::before{content:'·';position:absolute;left:4px;color:#a5b4fc;font-weight:700;}
+
+/* NEXT */
+.nxt-wrap{text-align:center;margin-top:32px;}
+.nxt-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--indigo);color:#fff;border:none;
+  border-radius:10px;padding:14px 28px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:all .2s;text-decoration:none;
+}
+.nxt-btn:hover{background:var(--indigo2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(61,82,213,0.3);}
+.nxt-btn svg{width:16px;height:16px;}
+
+/* Value prop highlight */
+.vp-box{
+  background:linear-gradient(135deg,var(--indigo-pale) 0%,var(--violet-pale) 100%);
+  border:1px solid var(--indigo-border);border-radius:12px;
+  padding:20px 24px;margin-bottom:16px;
+}
+.vp-box .vp-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.vp-box .vp-text{font-size:13px;color:var(--muted);line-height:1.7;}
+
+@media(max-width:700px){
+  .hero,.nav{padding-left:20px;padding-right:20px;}
+  .main{padding:28px 16px 60px;}
+  .g2,.g3,.g4,.usp-grid,.dial-grid,.sg4{grid-template-columns:1fr;}
+  .comp-table{display:block;overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="crumb">VITAL HEALTHCARE · DORA-6000 · <span>MODUL 4</span></div>
+  <h1>Komersial &amp;<br><em>Disposable</em></h1>
+  <p class="hero-p">Strategi penjualan, keunggulan kompetitif, panduan produk disposable Vital, simulasi presentasi ke RS, dan cara menangani keberatan pembeli.</p>
+  <div class="pills">
+    <span class="pill pi">Competitive Analysis</span>
+    <span class="pill pv">Objection Handling</span>
+    <span class="pill pg">Sales Simulation</span>
+    <span class="pill pi">Disposable Guide</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nv active" onclick="goS('s1',this)">4.1 Value Proposition</div>
+  <div class="nv" onclick="goS('s2',this)">4.2 Analisis Kompetitor</div>
+  <div class="nv" onclick="goS('s3',this)">4.3 Produk Disposable</div>
+  <div class="nv" onclick="goS('s4',this)">4.4 Objection Handling</div>
+  <div class="nv" onclick="goS('s5',this)">4.5 Simulasi Sales</div>
+  <div class="nv" onclick="goS('s6',this)">4.6 Strategi Presentasi</div>
+  <div class="nv" onclick="goS('s7',this)">4.7 Latihan</div>
+</div>
+
+<div class="main">
+
+<!-- ===== 4.1 VALUE PROPOSITION ===== -->
+<div class="sec" id="s1">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.1</span>
+    <div>
+      <div class="sec-title">Value Proposition DORA-6000</div>
+      <div class="sec-sub">Apa yang membuat DORA-6000 layak dipilih — dari perspektif klinis DAN komersial</div>
+    </div>
+  </div>
+
+  <div class="vp-box">
+    <div class="vp-title">Positioning Statement DORA-6000</div>
+    <div class="vp-text">DORA-6000 adalah mesin hemodialisis <strong>ultrapure kelas menengah-atas</strong> yang menawarkan akurasi setara mesin premium Eropa dengan harga yang jauh lebih terjangkau, didukung oleh komponen kunci Jepang, sertifikasi CE, dan ekosistem disposable Vital yang terintegrasi penuh.</div>
+  </div>
+
+  <div class="usp-grid">
+    <div class="usp-card u-indigo">
+      <div class="usp-icon">⚙️</div>
+      <div class="usp-title">Pompa Keramik UF ±1%</div>
+      <div class="usp-desc">Akurasi ultrafiltrasi terbaik di kelasnya. Pompa keramik tidak terpengaruh viskositas — jaminan volume cairan pasien yang diambil tepat sesuai target.</div>
+      <div class="usp-tag" style="background:var(--indigo-pale);color:var(--indigo)">Klaim teknis terkuat</div>
+    </div>
+    <div class="usp-card u-violet">
+      <div class="usp-icon">🛡️</div>
+      <div class="usp-title">Triple Safety DLF+MON+UI</div>
+      <div class="usp-desc">Tiga lapis proteksi plus dual interlock software+hardware. Self-test otomatis setiap 30 menit. Level EMC 4 — standar tertinggi untuk perangkat medis.</div>
+      <div class="usp-tag" style="background:var(--violet-pale);color:var(--violet)">Kepercayaan klinisi</div>
+    </div>
+    <div class="usp-card u-teal">
+      <div class="usp-icon">💧</div>
+      <div class="usp-title">Ultrapure Ready</div>
+      <div class="usp-desc">Endotoxin filter terintegrasi menghasilkan dialisat ultrapur. BICART cartridge eliminasi risiko kontaminasi. Kesiapan untuk online HDF di masa depan.</div>
+      <div class="usp-tag" style="background:var(--teal-pale);color:var(--teal)">Standar dialisis modern</div>
+    </div>
+    <div class="usp-card u-green">
+      <div class="usp-icon">🔋</div>
+      <div class="usp-title">Battery Backup 30 Menit</div>
+      <div class="usp-desc">Otomatis aktif saat listrik padam — treatment tidak terganggu. Kritis untuk RS di daerah dengan pasokan listrik tidak stabil. Tidak semua kompetitor punya fitur ini.</div>
+      <div class="usp-tag" style="background:var(--green-pale);color:var(--green)">Diferensiasi vs kompetitor</div>
+    </div>
+    <div class="usp-card u-rose">
+      <div class="usp-icon">📊</div>
+      <div class="usp-title">Online Kt/V Monitoring</div>
+      <div class="usp-desc">Monitor kecukupan dialisis secara real-time tanpa sampling darah tambahan. Data Kt/V langsung tersedia untuk dokumentasi rekam medis. Mendukung akreditasi RS.</div>
+      <div class="usp-tag" style="background:var(--rose-pale);color:var(--rose)">Nilai klinis nyata</div>
+    </div>
+    <div class="usp-card u-amber">
+      <div class="usp-icon">🔧</div>
+      <div class="usp-title">Maintenance-Friendly Design</div>
+      <div class="usp-desc">Kabinet 3 cara buka, terpisah listrik & hidrolik, Pump Test mode untuk diagnostik lapangan. TCO (Total Cost of Ownership) lebih rendah dibanding mesin premium Eropa.</div>
+      <div class="usp-tag" style="background:var(--amber-pale);color:var(--amber)">Argumen CFO / pengadaan</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px">Kalkulasi TCO — Total Cost of Ownership (argumen untuk pengadaan)</div>
+    <div class="g3">
+      <div>
+        <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Harga mesin awal</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.7">DORA-6000 berada di segmen <strong style="color:var(--navy)">30–50% lebih terjangkau</strong> dibanding mesin premium Eropa dengan spesifikasi setara. Argumen kunci untuk komite pengadaan RS.</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Biaya operasional</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.7">Komponen spare parts lebih mudah didapat. Design compact mengurangi downtime. Pompa keramik umur panjang = lebih jarang ganti dibanding pompa peristaltik.</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Ekosistem disposable</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.7">Dializer, bloodline, bicarbonate, fistula needle — semua dari Vital Healthcare. <strong style="color:var(--navy)">One-stop solution</strong> yang menyederhanakan procurement RS.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.2 ANALISIS KOMPETITOR ===== -->
+<div class="sec" id="s2">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.2</span>
+    <div>
+      <div class="sec-title">Analisis Kompetitif</div>
+      <div class="sec-sub">Posisi DORA-6000 vs mesin lain yang sering dijumpai di pasar regional</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tb active" onclick="showT2('comp','c-matrix')">Matriks fitur</button>
+    <button class="tb" onclick="showT2('comp','c-segment')">Segmentasi pasar</button>
+    <button class="tb" onclick="showT2('comp','c-talk')">Talk track</button>
+  </div>
+
+  <div id="c-matrix" class="tpanel active">
+    <div style="overflow-x:auto;border-radius:12px;box-shadow:var(--shadow)">
+      <table class="comp-table comp-dora" style="background:var(--panel);min-width:700px">
+        <thead>
+          <tr>
+            <th style="width:22%;background:var(--bg3)">Fitur</th>
+            <th style="color:var(--indigo)">DORA-6000<br><span style="font-size:10px;font-weight:400;color:var(--indigo)">Vital/Phoenix</span></th>
+            <th>Fresenius<br><span style="font-size:10px;font-weight:400;color:var(--muted)">5008S/6008</span></th>
+            <th>Nipro<br><span style="font-size:10px;font-weight:400;color:var(--muted)">SCuf / Surdial</span></th>
+            <th>B.Braun<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Dialog+</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pompa UF keramik</td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="cx">✗</span> peristaltik</td>
+            <td><span class="ck">✓</span></td>
+          </tr>
+          <tr>
+            <td>Akurasi UF</td>
+            <td><span style="color:var(--indigo);font-weight:700">±1%</span></td>
+            <td style="color:var(--muted)">±1%</td>
+            <td style="color:var(--muted)">±5%</td>
+            <td style="color:var(--muted)">±1%</td>
+          </tr>
+          <tr>
+            <td>Online Kt/V monitoring</td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="cm">◐</span> terbatas</td>
+            <td><span class="ck">✓</span></td>
+          </tr>
+          <tr>
+            <td>Ultrapure / endotoxin filter</td>
+            <td><span class="ck">✓</span> built-in</td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="cm">◐</span> opsi</td>
+            <td><span class="ck">✓</span></td>
+          </tr>
+          <tr>
+            <td>Battery backup</td>
+            <td><span class="ck">✓</span> 30 menit</td>
+            <td><span class="cm">◐</span> opsi</td>
+            <td><span class="cx">✗</span></td>
+            <td><span class="cm">◐</span> opsi</td>
+          </tr>
+          <tr>
+            <td>BICART / bicarbonate cartridge</td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="cm">◐</span></td>
+            <td><span class="ck">✓</span></td>
+          </tr>
+          <tr>
+            <td>EMC protection level</td>
+            <td><span class="ck">Level 4</span></td>
+            <td style="color:var(--muted)">Level 4</td>
+            <td style="color:var(--muted)">Level 3</td>
+            <td style="color:var(--muted)">Level 4</td>
+          </tr>
+          <tr>
+            <td>BPM (blood pressure monitor)</td>
+            <td><span class="ck">✓</span> opsi</td>
+            <td><span class="ck">✓</span> opsi</td>
+            <td><span class="ck">✓</span></td>
+            <td><span class="ck">✓</span></td>
+          </tr>
+          <tr>
+            <td>Segment harga</td>
+            <td><span class="badge bi">Mid-Premium</span></td>
+            <td><span class="badge br">Premium</span></td>
+            <td><span class="badge bg">Mid-range</span></td>
+            <td><span class="badge br">Premium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:11px;color:var(--dim);margin-top:8px;padding:0 4px">✓ = standar  ◐ = opsional / terbatas  ✗ = tidak tersedia. Data berdasarkan spesifikasi publik — verifikasi dengan datasheet terbaru sebelum presentasi ke pelanggan.</div>
+  </div>
+
+  <div id="c-segment" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Target Segmen DORA-6000</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum si">1</div>
+            <div class="sbody">
+              <div class="stitle">RS tipe C & D yang ingin upgrade</div>
+              <div class="sdesc">RS kelas menengah yang saat ini menggunakan mesin tua atau mesin entry-level — ingin fitur lengkap tapi anggaran terbatas. DORA-6000 adalah titik tengah ideal.</div>
+              <div class="snote ni">Argumen utama: spesifikasi setara premium, harga terjangkau, TCO rendah</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si">2</div>
+            <div class="sbody">
+              <div class="stitle">Klinik HD baru / greenfield</div>
+              <div class="sdesc">Klinik HD yang baru buka membutuhkan mesin andal + ekosistem disposable lengkap dari satu supplier. Vital Healthcare menyediakan keduanya.</div>
+              <div class="snote ng">Tawarkan paket bundling: mesin + dializer + bloodline + bicarbonate</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si">3</div>
+            <div class="sbody">
+              <div class="stitle">RS tipe B yang butuh penambahan unit</div>
+              <div class="sdesc">RS besar yang sudah punya mesin premium Eropa namun butuh penambahan cepat dengan budget terbatas — DORA-6000 sebagai pelengkap fleet.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sd">✓</div>
+            <div class="sbody">
+              <div class="stitle">Daerah dengan listrik tidak stabil</div>
+              <div class="sdesc">Fitur battery backup 30 menit menjadi diferensiasi kuat untuk RS/klinik di daerah dengan PLN tidak reliabel — ini adalah argumen yang langsung terasa relevan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Segmen yang Kurang Sesuai</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="snote na">RS tipe A / RS rujukan nasional yang mensyaratkan merek premium tertentu dalam regulasi internal pengadaan — lebih sulit masuk</div>
+          <div class="snote nr">Klinik HD yang sudah punya kontrak eksklusif jangka panjang dengan kompetitor tertentu — fokus ke after-contract renewal</div>
+          <div class="snote na">RS yang mensyaratkan online HDF/HDF sebagai treatment utama — DORA-6000 ultrapure ready tapi HDF online belum diklaim secara resmi</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-top:18px;margin-bottom:10px">Pertanyaan kualifikasi prospek</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:12px;color:var(--muted);padding:8px 12px;background:var(--bg3);border-radius:7px;border-left:3px solid var(--indigo)">"Mesin apa yang saat ini digunakan? Sudah berapa lama?"</div>
+          <div style="font-size:12px;color:var(--muted);padding:8px 12px;background:var(--bg3);border-radius:7px;border-left:3px solid var(--indigo)">"Berapa jumlah kursi dialisis yang ada dan yang direncanakan?"</div>
+          <div style="font-size:12px;color:var(--muted);padding:8px 12px;background:var(--bg3);border-radius:7px;border-left:3px solid var(--indigo)">"Apakah ada kendala listrik / genset di fasilitas ini?"</div>
+          <div style="font-size:12px;color:var(--muted);padding:8px 12px;background:var(--bg3);border-radius:7px;border-left:3px solid var(--indigo)">"Siapa yang membuat keputusan pengadaan alat — dokter, manajemen, atau komite?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="c-talk" class="tpanel">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:16px">Talk track vs kompetitor spesifik</div>
+      <table class="tbl">
+        <tr><th>Kompetitor</th><th>Kelemahan mereka</th><th>Kalimat positioning DORA-6000</th></tr>
+        <tr>
+          <td><strong>Fresenius 5008/6008</strong></td>
+          <td>Harga premium tinggi, TCO mahal, spare parts eksklusif dan mahal</td>
+          <td style="color:var(--indigo);font-style:italic">"Spesifikasi klinis setara, dengan harga investasi yang 30–40% lebih efisien. TCO DORA-6000 jauh lebih rendah dalam 5 tahun penggunaan."</td>
+        </tr>
+        <tr>
+          <td><strong>Nipro Surdial</strong></td>
+          <td>UF pump peristaltik (akurasi ±5%), tidak ada battery backup standar</td>
+          <td style="color:var(--indigo);font-style:italic">"DORA-6000 menggunakan pompa keramik dengan akurasi ±1% — 5x lebih presisi. Plus battery backup 30 menit yang tidak ada di Nipro standar."</td>
+        </tr>
+        <tr>
+          <td><strong>Mesin China tanpa CE</strong></td>
+          <td>Tidak bersertifikasi, tidak ada jaminan keamanan internasional</td>
+          <td style="color:var(--indigo);font-style:italic">"DORA-6000 bersertifikasi CE 1639, diproduksi Guangzhou Phoenix dengan R&D 10+ tahun dan tim insinyur Jepang. Bukan sekadar mesin China — ini kualitas internasional terverifikasi."</td>
+        </tr>
+        <tr>
+          <td><strong>Mesin lokal/regional</strong></td>
+          <td>Spesifikasi terbatas, tidak ada endotoxin filter, servis tidak konsisten</td>
+          <td style="color:var(--indigo);font-style:italic">"DORA-6000 dengan endotoxin filter built-in menghasilkan dialisat ultrapur — standar yang sama dengan mesin Eropa premium."</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.3 PRODUK DISPOSABLE ===== -->
+<div class="sec" id="s3">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.3</span>
+    <div>
+      <div class="sec-title">Panduan Produk Disposable Vital</div>
+      <div class="sec-sub">Dializer, bloodline, fistula needle, bicarbonate — cara memilih dan menjual ekosistem lengkap</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tb active" onclick="showT2('disp','d-dializer')">Dializer series</button>
+    <button class="tb" onclick="showT2('disp','d-needle')">AV Fistula Needle</button>
+    <button class="tb" onclick="showT2('disp','d-bloodline')">Bloodline</button>
+    <button class="tb" onclick="showT2('disp','d-bicarb')">Bicarbonate</button>
+    <button class="tb" onclick="showT2('disp','d-select')">Panduan Pemilihan</button>
+  </div>
+
+  <!-- DIALIZER -->
+  <div id="d-dializer" class="tpanel active">
+    <div class="dial-grid" style="margin-bottom:16px">
+      <div class="dial-card">
+        <span class="dial-series ds-hf">HF Series</span>
+        <div class="dial-name">High-Flux</div>
+        <div class="dial-kv">48–77</div>
+        <div class="dial-ku">UFR mL/hr/mmHg</div>
+        <div class="dial-props">
+          <div class="dp">Luas membran <span>1.4–2.4 m²</span></div>
+          <div class="dp">Membran <span>PES</span></div>
+          <div class="dp">β2-MG clearance <span>≥0.7 SC</span></div>
+          <div class="dp">Sterilisasi <span>Radiasi</span></div>
+        </div>
+        <div class="dial-use">Untuk: HD standar, pasien stabil, klirens toksin sedang-besar</div>
+      </div>
+      <div class="dial-card">
+        <span class="dial-series ds-lf">LF Series</span>
+        <div class="dial-name">Low-Flux</div>
+        <div class="dial-kv">21–36</div>
+        <div class="dial-ku">UFR mL/hr/mmHg</div>
+        <div class="dial-props">
+          <div class="dp">Luas membran <span>1.4–2.4 m²</span></div>
+          <div class="dp">Membran <span>PES</span></div>
+          <div class="dp">β2-MG clearance <span>Rendah</span></div>
+          <div class="dp">Sterilisasi <span>Radiasi</span></div>
+        </div>
+        <div class="dial-use">Untuk: pasien baru HD, hemodinamik tidak stabil, budget terbatas, HD konvensional</div>
+      </div>
+      <div class="dial-card">
+        <span class="dial-series ds-h">H Series (DIA)</span>
+        <div class="dial-name">High-Flux DIA</div>
+        <div class="dial-kv">47–71</div>
+        <div class="dial-ku">UFR mL/hr/mmHg</div>
+        <div class="dial-props">
+          <div class="dp">Luas membran <span>1.3–2.1 m²</span></div>
+          <div class="dp">Housing <span>PC (transparan)</span></div>
+          <div class="dp">β2-MG clearance <span>≥0.7 SC</span></div>
+          <div class="dp">Sterilisasi <span>Radiasi</span></div>
+        </div>
+        <div class="dial-use">Untuk: pasien dengan uremia kompleks, perlu klirens toksin besar, monitoring visual lebih mudah (housing transparan)</div>
+      </div>
+      <div class="dial-card">
+        <span class="dial-series ds-l">L Series (DIA)</span>
+        <div class="dial-name">Low-Flux DIA</div>
+        <div class="dial-kv">20–32</div>
+        <div class="dial-ku">UFR mL/hr/mmHg</div>
+        <div class="dial-props">
+          <div class="dp">Luas membran <span>1.3–2.1 m²</span></div>
+          <div class="dp">Housing <span>PC (transparan)</span></div>
+          <div class="dp">β2-MG clearance <span>Rendah</span></div>
+          <div class="dp">Sterilisasi <span>Radiasi</span></div>
+        </div>
+        <div class="dial-use">Untuk: HD konvensional dengan monitoring visual, pasien anak atau BB rendah, budget sangat terbatas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px">Clearance perbandingan — QB 300 mL/min, QD 500 mL/min</div>
+      <table class="tbl">
+        <tr><th>Toksin</th><th>HF V-16HF</th><th>LF V-16LF</th><th>H DIA15H</th><th>L DIA15L</th><th>Klinisi minta</th></tr>
+        <tr>
+          <td><strong>Urea</strong> (60 Da)</td>
+          <td><span class="badge bg">269 mL/min</span></td>
+          <td>260 mL/min</td>
+          <td>260 mL/min</td>
+          <td>249 mL/min</td>
+          <td>Tinggi = Kt/V besar</td>
+        </tr>
+        <tr>
+          <td><strong>Kreatinin</strong> (113 Da)</td>
+          <td><span class="badge bg">254 mL/min</span></td>
+          <td>246 mL/min</td>
+          <td>230 mL/min</td>
+          <td>226 mL/min</td>
+          <td>Standar monitoring CKD</td>
+        </tr>
+        <tr>
+          <td><strong>Fosfat</strong> (95 Da)</td>
+          <td><span class="badge bg">238 mL/min</span></td>
+          <td>239 mL/min</td>
+          <td>238 mL/min</td>
+          <td>224 mL/min</td>
+          <td>Kontrol hiperfosfatemia</td>
+        </tr>
+        <tr>
+          <td><strong>β2-Mikroglobulin</strong> (11.8 kDa)</td>
+          <td><span class="badge bi">SC ≥0.7</span></td>
+          <td style="color:var(--muted)">Rendah</td>
+          <td><span class="badge bi">SC ≥0.7</span></td>
+          <td style="color:var(--muted)">Rendah</td>
+          <td>HF = HDLCS prevention</td>
+        </tr>
+        <tr>
+          <td><strong>Albumin</strong> (69 kDa)</td>
+          <td>SC ≤0.01</td>
+          <td>SC ≤0.01</td>
+          <td>SC ≤0.01</td>
+          <td>SC ≤0.01</td>
+          <td>Harus minimal — jangan bocor</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FISTULA NEEDLE -->
+  <div id="d-needle" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Keunggulan AV Fistula Needle Vital</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          <div class="snote ni">Ultra thin wall + siliconized → penetrasi lebih mulus, trauma fistula minimal</div>
+          <div class="snote ng">Proses khusus pada blade → rasa sakit lebih sedikit, kerusakan kulit minimal</div>
+          <div class="snote ni">Medical grade PVC tubing → efek samping terhadap kesehatan minimal</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">Spesifikasi tersedia</div>
+        <table class="tbl" style="background:transparent">
+          <tr><th>Gauge</th><th>Panjang jarum</th><th>Wing</th><th>Sterilisasi</th></tr>
+          <tr><td><span class="badge bi">14G</span></td><td>20, 25, 32 mm</td><td>Fixed/Rotatable</td><td>EO/Gamma</td></tr>
+          <tr><td><span class="badge bi">15G</span></td><td>20, 25, 32 mm</td><td>Fixed/Rotatable</td><td>EO/Gamma</td></tr>
+          <tr><td><span class="badge bi">16G</span></td><td>20, 25, 32 mm</td><td>Fixed/Rotatable</td><td>EO/Gamma</td></tr>
+          <tr><td><span class="badge bi">17G</span></td><td>20, 25, 32 mm</td><td>Fixed/Rotatable</td><td>EO/Gamma</td></tr>
+        </table>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Panduan pemilihan gauge</div>
+        <table class="tbl" style="background:transparent">
+          <tr><th>Gauge</th><th>QB yang bisa dicapai</th><th>Indikasi</th></tr>
+          <tr><td><span class="badge bg">14G</span></td><td>300–500 mL/min</td><td>Fistula matur, QB tinggi, pasien besar</td></tr>
+          <tr><td><span class="badge bi">15G</span></td><td>250–350 mL/min</td><td>Standar paling umum, fistula dewasa</td></tr>
+          <tr><td><span class="badge ba">16G</span></td><td>200–280 mL/min</td><td>Fistula baru/kecil, pasien anak besar</td></tr>
+          <tr><td><span class="badge bs">17G</span></td><td>150–200 mL/min</td><td>Fistula sangat kecil, anak, vena tipis</td></tr>
+        </table>
+        <div class="snote na" style="margin-top:12px">Panjang jarum: 25mm = paling umum. 20mm = fistula superfisial. 32mm = fistula profunda / BB besar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOODLINE -->
+  <div id="d-bloodline" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Keunggulan Bloodline Vital</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+          <div class="snote ni">Medical grade PVC — efek samping minimal terhadap kesehatan</div>
+          <div class="snote ng">DEHP Free tersedia — lebih aman untuk pasien reguler jangka panjang</div>
+          <div class="snote ni">Sterilisasi EO atau Gamma sesuai kebutuhan</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">Kompatibilitas mesin</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="font-size:12px;padding:6px 10px;background:var(--bg3);border-radius:6px;color:var(--muted)">FMC 2008–4008</div>
+          <div style="font-size:12px;padding:6px 10px;background:var(--bg3);border-radius:6px;color:var(--muted)">Gambro AK10/100/200</div>
+          <div style="font-size:12px;padding:6px 10px;background:var(--bg3);border-radius:6px;color:var(--muted)">B.Braun Dialog</div>
+          <div style="font-size:12px;padding:6px 10px;background:var(--bg3);border-radius:6px;color:var(--muted)">Nikkiso DBB-03/05/06/07</div>
+          <div style="font-size:12px;padding:6px 10px;background:var(--bg3);border-radius:6px;color:var(--muted)">Nipro / Toray</div>
+          <div style="font-size:12px;padding:6px 10px;background:var(--indigo-pale);border-radius:6px;color:var(--indigo);font-weight:600">DORA-6000</div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Nilai jual ke buyer</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum si" style="font-size:10px">1</div>
+            <div class="sbody">
+              <div class="stitle">Satu supplier untuk semua</div>
+              <div class="sdesc">RS bisa menyederhanakan vendor list — bloodline, dializer, bicarbonate, fistula needle dari satu sumber Vital Healthcare.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">2</div>
+            <div class="sbody">
+              <div class="stitle">Kompatibilitas multi-mesin</div>
+              <div class="sdesc">RS yang memiliki campuran mesin berbeda tetap bisa menggunakan bloodline Vital — tidak perlu stok berbeda per merek.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sd" style="font-size:10px">✓</div>
+            <div class="sbody">
+              <div class="stitle">DEHP Free — standar modern</div>
+              <div class="sdesc">Pasien HD 3x seminggu terpapar plastik lebih banyak — DEHP free bloodline adalah argumen kuat untuk RS yang peduli keamanan pasien jangka panjang.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BICARBONATE -->
+  <div id="d-bicarb" class="tpanel">
+    <div class="g2">
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">BICART Cartridge (untuk DORA-6000)</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          <div class="snote ni">Bubuk bikarbonat kering → tidak ada risiko pertumbuhan bakteri vs bikarbonat cair</div>
+          <div class="snote ng">Pelarutan terjadi di dalam cartridge dengan air RO segar — tidak ada kontaminasi silang</div>
+          <div class="snote ni">Eliminasi risiko yang ada pada bikarbonat botol/jeriken tradisional</div>
+        </div>
+        <table class="tbl" style="background:transparent">
+          <tr><th>Spesifikasi</th><th>Nilai</th></tr>
+          <tr><td>Produk</td><td>DORA BICART B-20H</td></tr>
+          <tr><td>Konten</td><td>Sodium bicarbonate powder</td></tr>
+          <tr><td>Kompatibilitas</td><td>DORA-6000 (port B merah)</td></tr>
+          <tr><td>Sertifikasi</td><td>CE 0197</td></tr>
+        </table>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Bikarbonat powder bag (universal)</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+          <div class="snote ni">Berat: 450g per bag — cocok untuk penggunaan multi-pasien di klinik</div>
+          <div class="snote ng">Kompatibel dengan berbagai mesin yang menggunakan port bikarbonat standar</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:8px">Perbandingan bicarbonate delivery</div>
+        <table class="tbl" style="background:transparent">
+          <tr><th>Metode</th><th>Keamanan</th><th>Praktis</th></tr>
+          <tr><td>BICART cartridge</td><td><span class="badge bg">Tertinggi</span></td><td><span class="badge bg">Mudah</span></td></tr>
+          <tr><td>Powder bag</td><td><span class="badge bi">Tinggi</span></td><td><span class="badge bi">Baik</span></td></tr>
+          <tr><td>Larutan cair 8.4%</td><td><span class="badge ba">Sedang</span></td><td><span class="badge ba">Perlu perhatian</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANDUAN PEMILIHAN -->
+  <div id="d-select" class="tpanel">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:16px">Algoritma pemilihan dializer — tanya klinisi ini</div>
+      <div class="g2">
+        <div class="stepper">
+          <div class="step">
+            <div class="snum si" style="font-size:10px">Q1</div>
+            <div class="sbody">
+              <div class="stitle">"Apakah pasien sudah lama HD atau baru?"</div>
+              <div class="sdesc">Pasien baru / hemodinamik tidak stabil → <strong>Low-Flux (LF/L Series)</strong>. Pasien lama, stabil → bisa High-Flux.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">Q2</div>
+            <div class="sbody">
+              <div class="stitle">"Apakah ada masalah β2-mikroglobulin atau dialysis-related amyloidosis?"</div>
+              <div class="sdesc">Ya → wajib <strong>High-Flux (HF/H Series)</strong> dengan SC β2-MG ≥0.7. LF tidak mencukupi untuk kondisi ini.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">Q3</div>
+            <div class="sbody">
+              <div class="stitle">"Berapa berat badan / luas permukaan tubuh pasien?"</div>
+              <div class="sdesc">BB &lt;50 kg → pertimbangkan 1.4–1.6 m². BB &gt;80 kg → 1.8–2.4 m² untuk klirens adekuat.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">Q4</div>
+            <div class="sbody">
+              <div class="stitle">"Apakah monitoring visual penting?"</div>
+              <div class="sdesc">Jika klinisi ingin melihat warna darah di dalam dializer → rekomendasikan <strong>H Series / L Series DIA</strong> (housing PC transparan).</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sd">✓</div>
+            <div class="sbody">
+              <div class="stitle">Rekomendasikan model spesifik</div>
+              <div class="sdesc">Cocokkan luas membran dengan kebutuhan, tawarkan opsi 2 ukuran untuk trial sebelum order bulk.</div>
+              <div class="snote ng">Strategi: selalu tawarkan 1 ukuran di atas dan 1 di bawah kebutuhan — biarkan klinisi memilih. Ini membangun kepercayaan dan mendapat feedback data real.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px">Rekomendasi cepat berdasarkan skenario</div>
+          <table class="tbl" style="background:transparent">
+            <tr><th>Skenario pasien</th><th>Rekomendasi</th></tr>
+            <tr><td>Pasien baru, hemodinamik tidak stabil</td><td><span class="badge bs">V-16LF atau DIA15L</span></td></tr>
+            <tr><td>HD rutin, stabil, sudah &gt;1 tahun</td><td><span class="badge bi">V-18HF atau V-20HF</span></td></tr>
+            <tr><td>Pasien dengan keluhan tulang/sendi</td><td><span class="badge bv">V-18HF atau DIA17H</span></td></tr>
+            <tr><td>Pasien BB besar (&gt;80 kg)</td><td><span class="badge bi">V-22HF atau V-24HF</span></td></tr>
+            <tr><td>Klinik budget ketat, HD konvensional</td><td><span class="badge bs">V-16LF atau DIA15L</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.4 OBJECTION HANDLING ===== -->
+<div class="sec" id="s4">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.4</span>
+    <div>
+      <div class="sec-title">Objection Handling</div>
+      <div class="sec-sub">Respons tersiapkan untuk keberatan umum dari buyer — dokter, manajemen, dan tim pengadaan</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj1">
+    <div class="obj-q" onclick="toggleObj('obj1')">
+      <div class="obj-icon" style="background:var(--rose-pale)">💬</div>
+      <div class="obj-q-text">"Merek China pasti kualitasnya di bawah Fresenius / Gambro."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Saya mengerti kekhawatiran itu — dan itu wajar. DORA-6000 diproduksi oleh Guangzhou Phoenix Medical dengan R&D lebih dari 10 tahun, melalui 3 generasi pengembangan, dan tim insinyur gabungan China-Jepang. Komponen kuncinya — pompa keramik, sensor, heat exchanger — diimpor dari Jepang. Sertifikasi CE 1639 dari Eropa memverifikasi bahwa mesin ini memenuhi standar keamanan internasional yang sama dengan mesin Eropa."
+      <div class="obj-key">Kunci: fokus pada bukti (CE, komponen Jepang, R&D track record) — bukan membandingkan merek secara emosional.</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj2">
+    <div class="obj-q" onclick="toggleObj('obj2')">
+      <div class="obj-icon" style="background:var(--amber-pale)">💬</div>
+      <div class="obj-q-text">"Kami sudah punya mesin lama yang masih bisa dipakai, tidak ada anggaran untuk mesin baru."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Saya menghargai efisiensi anggaran Bapak/Ibu. Boleh saya tanya — mesin yang ada sekarang sudah berapa tahun? Berapa sering downtime atau perbaikan dalam 12 bulan terakhir? Seringkali biaya servis mesin tua, plus risiko downtime yang mengganggu pasien, lebih besar dari biaya investasi mesin baru. DORA-6000 dengan desain maintenance-friendly memiliki TCO yang lebih rendah dalam 5 tahun ke depan."
+      <div class="obj-key">Kunci: hitung TCO bersama buyer. Bawa data biaya servis rata-rata mesin lama vs investasi DORA-6000.</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj3">
+    <div class="obj-q" onclick="toggleObj('obj3')">
+      <div class="obj-icon" style="background:var(--indigo-pale)">💬</div>
+      <div class="obj-q-text">"Kami tidak yakin dengan ketersediaan spare parts dan servis purna jual."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Pertanyaan yang sangat tepat — servis purna jual adalah komitmen kami. Vital Healthcare menyediakan: spare parts lokal di gudang, teknisi terlatih yang siap dispatch dalam 24–48 jam, dan training teknisi RS. Kami juga memiliki jaringan regional yang terus berkembang. Kami bisa tunjukkan daftar RS yang sudah menggunakan DORA-6000 dan pengalaman servis mereka."
+      <div class="obj-key">Kunci: siapkan referensi pelanggan aktif yang bisa dihubungi. Social proof dari sesama klinisi sangat kuat.</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj4">
+    <div class="obj-q" onclick="toggleObj('obj4')">
+      <div class="obj-icon" style="background:var(--violet-pale)">💬</div>
+      <div class="obj-q-text">"Tim perawat kami sudah terbiasa dengan mesin X — susah ganti kebiasaan."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Sangat wajar. Itulah mengapa kami menyediakan training on-site yang komprehensif untuk seluruh tim perawat — tidak ada biaya tambahan untuk training awal. Interface DORA-6000 dirancang intuitif dengan 15-inch touchscreen yang user-friendly. Pengalaman kami, tim perawat biasanya adapt dalam 1–2 minggu. Kami juga sediakan modul training berbasis HTML yang bisa diakses kapan saja."
+      <div class="obj-key">Kunci: tawarkan free demo + training trial. Serahkan materi training ini (modul yang sedang Anda pelajari) ke RS sebagai bukti dukungan.</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj5">
+    <div class="obj-q" onclick="toggleObj('obj5')">
+      <div class="obj-icon" style="background:var(--teal-pale)">💬</div>
+      <div class="obj-q-text">"Dokter kami hanya percaya mesin yang sudah proven di jurnal / evidence base."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Saya menghormati pendekatan evidence-based itu. Satu hal yang bisa saya tawarkan: uji klinis langsung di unit Bapak/Ibu — bandingkan data Kt/V, UF accuracy, dan parameter klinis antara mesin yang ada dengan DORA-6000 pada pasien yang sama selama 4–8 minggu. Data berbicara sendiri. Kami percaya diri dengan hasil klinis DORA-6000."
+      <div class="obj-key">Kunci: proposalkan uji klinis komparatif head-to-head. Ini juga membangun hubungan jangka panjang dengan dokter yang jadi key opinion leader.</div>
+    </div>
+  </div>
+
+  <div class="obj-card" id="obj6">
+    <div class="obj-q" onclick="toggleObj('obj6')">
+      <div class="obj-icon" style="background:var(--green-pale)">💬</div>
+      <div class="obj-q-text">"Harga disposable Vital lebih mahal dari supplier yang biasa kami pakai."</div>
+      <span class="obj-arrow">▼</span>
+    </div>
+    <div class="obj-a">
+      Respons: "Mari kita lihat lebih detail. Berapa harga per unit yang Bapak/Ibu dapatkan sekarang? Kadang selisih harga per unit terlihat besar, tapi kalau dihitung total — termasuk reject rate, konsistensi kualitas, dan efisiensi penggunaan — total cost sebenarnya setara atau bahkan lebih rendah. Plus, dengan bundling mesin + disposable Vital, ada nilai tambah berupa single vendor, single PO, dan dukungan teknis yang terintegrasi."
+      <div class="obj-key">Kunci: bandingkan total cost per pasien per bulan, bukan harga per unit. Dan tawarkan harga bundling yang lebih kompetitif.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.5 SIMULASI SALES ===== -->
+<div class="sec" id="s5">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.5</span>
+    <div>
+      <div class="sec-title">Simulasi Presentasi Sales</div>
+      <div class="sec-sub">Latih respons terbaik untuk skenario nyata di lapangan</div>
+    </div>
+  </div>
+
+  <!-- SIM 1 -->
+  <div class="sim-wrap" id="sim1">
+    <div class="sim-title">Skenario 1 — Meeting Awal dengan Kepala Unit Dialisis</div>
+    <div class="sim-sub">RS Tipe C, 8 mesin lama (usia &gt;8 tahun), dokter spesialis penyakit dalam. Anda baru masuk ruangan.</div>
+    <div class="sim-scene">
+      <div class="role role-buyer">Dr. Wijaya (Kepala Unit):</div>
+      "Saya dengar ada mesin baru dari Vital Healthcare. Kami sudah lama pakai mesin yang ada dan cukup puas. Kenapa saya harus mempertimbangkan DORA-6000?"
+    </div>
+    <div class="sim-choices" id="sim1-choices">
+      <div class="sim-opt" onclick="simAnswer('sim1','A','ok')">A. "DORA-6000 adalah mesin terbaik di kelasnya dengan teknologi terkini dari China yang sudah terbukti." </div>
+      <div class="sim-opt" onclick="simAnswer('sim1','B','best')">B. "Pertanyaan yang tepat, Dok. Boleh saya tanya dulu — mesin yang ada sekarang sudah berapa tahun, dan adakah kendala yang dirasakan selama ini?"</div>
+      <div class="sim-opt" onclick="simAnswer('sim1','C','bad')">C. "Mesin lama Bapak sudah ketinggalan. DORA-6000 jauh lebih baik dari semua sisi."</div>
+    </div>
+    <div class="sim-result" id="sim1-result"></div>
+    <button class="sim-reset" id="sim1-reset" onclick="simReset('sim1')">↺ Coba lagi</button>
+  </div>
+
+  <!-- SIM 2 -->
+  <div class="sim-wrap" id="sim2">
+    <div class="sim-title">Skenario 2 — Negosiasi dengan Direksi Keuangan</div>
+    <div class="sim-sub">RS Tipe B, 20 mesin campuran. CFO yang ketat terhadap anggaran.</div>
+    <div class="sim-scene">
+      <div class="role role-buyer">CFO:</div>
+      "Kami tertarik tapi harganya tetap lebih mahal dari anggaran yang kami siapkan. Bisakah harga diturunkan 25%?"
+    </div>
+    <div class="sim-choices" id="sim2-choices">
+      <div class="sim-opt" onclick="simAnswer('sim2','A','bad')">A. "Maaf, tidak bisa. Harga sudah fixed dan tidak ada ruang negosiasi."</div>
+      <div class="sim-opt" onclick="simAnswer('sim2','B','ok')">B. "Kami bisa diskusikan diskon khusus jika pembelian dalam jumlah tertentu."</div>
+      <div class="sim-opt" onclick="simAnswer('sim2','C','best')">C. "Saya mengerti kendala anggaran. Boleh saya usulkan: kita hitung bersama TCO 5 tahun — termasuk biaya servis, downtime, dan efisiensi operasional. Seringkali angkanya mengubah perspektif. Selain itu, kami bisa eksplorasi paket cicilan atau bundling dengan disposable yang menurunkan investasi awal."</div>
+    </div>
+    <div class="sim-result" id="sim2-result"></div>
+    <button class="sim-reset" id="sim2-reset" onclick="simReset('sim2')">↺ Coba lagi</button>
+  </div>
+
+  <!-- SIM 3 -->
+  <div class="sim-wrap" id="sim3">
+    <div class="sim-title">Skenario 3 — Diskusi Teknis dengan Kepala Teknisi RS</div>
+    <div class="sim-sub">Teknisi senior yang skeptis terhadap mesin baru.</div>
+    <div class="sim-scene">
+      <div class="role role-buyer">Pak Suyanto (Kepala Teknisi):</div>
+      "Kalau mesin rusak, spare parts-nya ada di Indonesia? Saya tidak mau sampai mesin nganggur berminggu-minggu nunggu impor."
+    </div>
+    <div class="sim-choices" id="sim3-choices">
+      <div class="sim-opt" onclick="simAnswer('sim3','A','bad')">A. "Jangan khawatir, pasti ada kok. Kami jamin."</div>
+      <div class="sim-opt" onclick="simAnswer('sim3','B','best')">B. "Pertanyaan kritis yang sangat wajar. Vital Healthcare menjaga stok spare parts kritis di gudang lokal. Untuk komponen yang tidak tersedia langsung, lead time impor kami rata-rata 5–7 hari kerja. Kami juga bisa atur kontrak SLA servis jika dibutuhkan — dan kami dengan senang hati tunjukkan daftar spare parts yang kami stok sekarang."</div>
+      <div class="sim-opt" onclick="simAnswer('sim3','C','ok')">C. "Spare parts tersedia, dan teknisi kami siap membantu kapan pun dibutuhkan."</div>
+    </div>
+    <div class="sim-result" id="sim3-result"></div>
+    <button class="sim-reset" id="sim3-reset" onclick="simReset('sim3')">↺ Coba lagi</button>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.6 STRATEGI PRESENTASI ===== -->
+<div class="sec" id="s6">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.6</span>
+    <div>
+      <div class="sec-title">Strategi Presentasi ke RS</div>
+      <div class="sec-sub">Struktur yang terbukti efektif — dari opening hingga closing</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="card-sm" style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px">Struktur presentasi 30 menit</div>
+        <div class="stepper">
+          <div class="step">
+            <div class="snum si" style="font-size:10px">0'</div>
+            <div class="sbody">
+              <div class="stitle">Opening — bangun rapport (3 menit)</div>
+              <div class="sdesc">Tunjukkan Anda sudah riset RS mereka. "Saya lihat unit dialisis Bapak/Ibu melayani X pasien per hari — itu luar biasa."</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">3'</div>
+            <div class="sbody">
+              <div class="stitle">Discovery — gali pain points (7 menit)</div>
+              <div class="sdesc">Tanya dulu, jangan langsung jualan. "Apa tantangan terbesar unit Anda sekarang?" Dengarkan, catat.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">10'</div>
+            <div class="sbody">
+              <div class="stitle">Demo / presentasi — sesuaikan pain (12 menit)</div>
+              <div class="sdesc">Tunjukkan HANYA fitur yang relevan dengan pain mereka. Jangan demo semua — fokus pada 3 keunggulan terpenting untuk mereka.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum si" style="font-size:10px">22'</div>
+            <div class="sbody">
+              <div class="stitle">Handling objection (5 menit)</div>
+              <div class="sdesc">Undang pertanyaan. Gunakan framework: Acknowledge → Bridge → Evidence.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="snum sd" style="font-size:10px">27'</div>
+            <div class="sbody">
+              <div class="stitle">Next step — closing (3 menit)</div>
+              <div class="sdesc">Jangan tinggalkan meeting tanpa next action yang jelas: demo unit, kunjungan referensi, proposal tertulis, atau trial. Tetapkan tanggal.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card-sm" style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px">Framework ABE — Handling objection</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:14px;background:var(--bg3);border-radius:8px;">
+            <div style="font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:4px">A — Acknowledge (akui)</div>
+            <div style="font-size:12px;color:var(--muted)">"Saya mengerti kekhawatiran Bapak/Ibu sepenuhnya. Itu pertanyaan yang sangat wajar..."</div>
+          </div>
+          <div style="padding:14px;background:var(--bg3);border-radius:8px;">
+            <div style="font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:4px">B — Bridge (jembatani)</div>
+            <div style="font-size:12px;color:var(--muted)">"Itulah mengapa kami [kalimat transisi yang mengubah sudut pandang tanpa konfrontatif]..."</div>
+          </div>
+          <div style="padding:14px;background:var(--bg3);border-radius:8px;">
+            <div style="font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:4px">E — Evidence (bukti)</div>
+            <div style="font-size:12px;color:var(--muted)">Data spesifikasi, referensi pelanggan aktif, hasil uji klinis, sertifikasi CE — sesuai keberatan yang diajukan.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px">Materi yang wajib dibawa ke meeting</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--indigo);font-size:14px">●</span>Brosur DORA-6000 (dengan spec sheet)</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--indigo);font-size:14px">●</span>Katalog disposable Vital (dializer + bloodline)</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--indigo);font-size:14px">●</span>Kalkulasi TCO 5 tahun (template Excel)</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--indigo);font-size:14px">●</span>Referensi pelanggan aktif (2–3 nama RS)</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--indigo);font-size:14px">●</span>Sertifikat CE dan dokumen regulasi</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--green);font-size:14px">●</span>Materi training digital (file HTML modul ini)</div>
+          <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span style="color:var(--green);font-size:14px">●</span>Laptop/tablet untuk demo UI mesin (video)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===== 4.7 KUIS ===== -->
+<div class="sec" id="s7">
+  <div class="sec-hdr">
+    <span class="sec-tag">SESI 4.7</span>
+    <div>
+      <div class="sec-title">Latihan Evaluasi — Komersial</div>
+      <div class="sec-sub">Uji kesiapan Anda sebelum turun ke lapangan</div>
+    </div>
+  </div>
+
+  <div class="qbox">
+    <h3>Kuis Modul 4 — Komersial & Disposable</h3>
+
+    <div class="qq" id="q1">
+      <div class="qtext">1. Apa keunggulan terkuat DORA-6000 yang paling susah ditandingi kompetitor di kelas harga yang sama?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q1',false)"><span class="qltr">A</span>Layar touchscreen 15 inci yang bisa diputar</div>
+        <div class="qopt" onclick="qa(this,'q1',true)"><span class="qltr">B</span>Pompa UF keramik dengan akurasi ±1% dan battery backup 30 menit</div>
+        <div class="qopt" onclick="qa(this,'q1',false)"><span class="qltr">C</span>Bobot mesin yang ringan (~83 kg)</div>
+        <div class="qopt" onclick="qa(this,'q1',false)"><span class="qltr">D</span>Mesin berwarna putih yang bersih</div>
+      </div>
+      <div class="qfb" id="fb-q1"></div>
+    </div>
+
+    <div class="qq" id="q2">
+      <div class="qtext">2. Dokter bertanya mengapa harus pilih dializer High-Flux untuk pasiennya. Jawaban terbaik adalah?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q2',false)"><span class="qltr">A</span>"Karena lebih mahal berarti lebih bagus"</div>
+        <div class="qopt" onclick="qa(this,'q2',true)"><span class="qltr">B</span>"High-Flux membersihkan toksin besar seperti β2-mikroglobulin (SC ≥0.7) yang tidak bisa dibersihkan Low-Flux — penting untuk mencegah dialysis-related amyloidosis jangka panjang"</div>
+        <div class="qopt" onclick="qa(this,'q2',false)"><span class="qltr">C</span>"Semua pasien sebaiknya pakai High-Flux tanpa terkecuali"</div>
+        <div class="qopt" onclick="qa(this,'q2',false)"><span class="qltr">D</span>"Karena High-Flux memiliki luas membran lebih besar"</div>
+      </div>
+      <div class="qfb" id="fb-q2"></div>
+    </div>
+
+    <div class="qq" id="q3">
+      <div class="qtext">3. Buyer mengatakan "merek China pasti kualitasnya di bawah merek Eropa." Respons terbaik menggunakan framework ABE adalah?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q3',false)"><span class="qltr">A</span>"Bapak salah. DORA-6000 sama saja dengan merek Eropa."</div>
+        <div class="qopt" onclick="qa(this,'q3',false)"><span class="qltr">B</span>"Memang benar ada merek China yang kurang baik, tapi kami berbeda."</div>
+        <div class="qopt" onclick="qa(this,'q3',true)"><span class="qltr">C</span>"Saya memahami persepsi itu sepenuhnya (A). Itulah mengapa kami selalu menunjukkan sertifikat CE 1639 dan spesifikasi komponen Jepang sebagai bukti nyata (B+E) — bukan sekadar klaim."</div>
+        <div class="qopt" onclick="qa(this,'q3',false)"><span class="qltr">D</span>"Harga kami lebih murah, jadi wajar kalau ada trade-off kualitas."</div>
+      </div>
+      <div class="qfb" id="fb-q3"></div>
+    </div>
+
+    <div class="qq" id="q4">
+      <div class="qtext">4. Pasien BB 90 kg, sudah 3 tahun HD, mengeluh gatal-gatal dan nyeri sendi. Dializer apa yang paling tepat direkomendasikan?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q4',false)"><span class="qltr">A</span>V-14LF — Low-Flux kecil untuk efisiensi biaya</div>
+        <div class="qopt" onclick="qa(this,'q4',false)"><span class="qltr">B</span>V-16HF — High-Flux ukuran standar</div>
+        <div class="qopt" onclick="qa(this,'q4',true)"><span class="qltr">C</span>V-22HF atau V-24HF — High-Flux ukuran besar sesuai BB besar, dengan SC β2-MG tinggi untuk keluhan sendi</div>
+        <div class="qopt" onclick="qa(this,'q4',false)"><span class="qltr">D</span>DIA13L — Low-Flux kecil yang hemat</div>
+      </div>
+      <div class="qfb" id="fb-q4"></div>
+    </div>
+
+    <div class="qq" id="q5">
+      <div class="qtext">5. Apa strategi terbaik saat meninggalkan meeting pertama dengan kepala unit dialisis?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q5',false)"><span class="qltr">A</span>Tinggalkan brosur dan tunggu mereka menghubungi Anda</div>
+        <div class="qopt" onclick="qa(this,'q5',false)"><span class="qltr">B</span>Minta keputusan pembelian langsung di akhir meeting pertama</div>
+        <div class="qopt" onclick="qa(this,'q5',true)"><span class="qltr">C</span>Tetapkan next action konkret dengan tanggal — demo unit, kunjungan referensi, atau proposal tertulis</div>
+        <div class="qopt" onclick="qa(this,'q5',false)"><span class="qltr">D</span>Kirim email follow-up dalam seminggu tanpa menetapkan next step</div>
+      </div>
+      <div class="qfb" id="fb-q5"></div>
+    </div>
+
+    <div class="qq" id="q6">
+      <div class="qtext">6. Untuk RS di daerah dengan pasokan listrik tidak stabil, fitur DORA-6000 mana yang menjadi argumen penjualan terkuat?</div>
+      <div class="qopts">
+        <div class="qopt" onclick="qa(this,'q6',false)"><span class="qltr">A</span>Layar 15 inci yang bisa diputar</div>
+        <div class="qopt" onclick="qa(this,'q6',false)"><span class="qltr">B</span>Mode disinfeksi peracetic acid</div>
+        <div class="qopt" onclick="qa(this,'q6',true)"><span class="qltr">C</span>Battery backup otomatis 30 menit saat listrik padam</div>
+        <div class="qopt" onclick="qa(this,'q6',false)"><span class="qltr">D</span>Heparin pump dengan auto-recognition syringe</div>
+      </div>
+      <div class="qfb" id="fb-q6"></div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SUMMARY -->
+<div class="sum-final">
+  <h2>Ringkasan Modul 4 — Komersial & Disposable</h2>
+  <div class="sg4">
+    <div class="sb4">
+      <h4>Value Prop</h4>
+      <ul>
+        <li>Pompa keramik ±1% = klaim teknis terkuat</li>
+        <li>Battery backup — diferensiasi unik</li>
+        <li>CE 1639, komponen Jepang</li>
+        <li>Ultrapure ready</li>
+        <li>TCO lebih rendah vs premium Eropa</li>
+      </ul>
+    </div>
+    <div class="sb4">
+      <h4>Disposable</h4>
+      <ul>
+        <li>HF: β2-MG clearance ≥0.7 SC</li>
+        <li>LF: pasien baru / tidak stabil</li>
+        <li>Ukuran 1.4–2.4 m² (6 pilihan)</li>
+        <li>Fistula needle 14G–17G</li>
+        <li>Bloodline multi-mesin + DEHP free</li>
+      </ul>
+    </div>
+    <div class="sb4">
+      <h4>Objection</h4>
+      <ul>
+        <li>Gunakan framework ABE</li>
+        <li>Kualitas → bukti CE + komponen Jepang</li>
+        <li>Harga → hitung TCO bersama</li>
+        <li>Servis → stok lokal + SLA</li>
+        <li>Kebiasaan → free training on-site</li>
+      </ul>
+    </div>
+    <div class="sb4">
+      <h4>Sales Strategy</h4>
+      <ul>
+        <li>Gali pain dulu, jualan kemudian</li>
+        <li>Fokus 3 USP terpenting per prospek</li>
+        <li>Selalu tetapkan next step konkret</li>
+        <li>Referensi pelanggan aktif = social proof</li>
+        <li>Proposalkan uji klinis head-to-head</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SELESAI -->
+<div class="nxt-wrap">
+  <div style="background:var(--indigo-pale);border:1px solid var(--indigo-border);border-radius:14px;padding:28px 32px;margin-bottom:28px;text-align:center">
+    <div style="font-size:28px;margin-bottom:12px">🎓</div>
+    <div style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px">Selamat! Semua 4 Modul Selesai</div>
+    <div style="font-size:14px;color:var(--muted);max-width:500px;margin:0 auto;line-height:1.7">Anda telah menyelesaikan seluruh kurikulum pelatihan DORA-6000 — dari dasar hemodialisa, operasional, teknis lanjutan, hingga strategi komersial.</div>
+  </div>
+  <a class="nxt-btn" href="index.html">
+    Kembali ke Portal Utama
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  </a>
+</div>
+
+</div><!-- /main -->
+
+<script>
+function goS(id,el){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nv').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+function showT2(grp,id){
+  const sec=event.target.closest('.sec');
+  sec.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  sec.querySelectorAll('.tpanel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function toggleObj(id){
+  const card=document.getElementById(id);
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.obj-card').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen)card.classList.add('open');
+}
+
+const simData={
+  sim1:{
+    A:{type:'ok',text:'Respons ini oke tapi kurang efektif — langsung promosi sebelum memahami kebutuhan pembeli bisa terasa push. Dokter belum merasa didengar.'},
+    B:{type:'best',text:'Excellent! Ini respons terbaik. Dengan bertanya dulu, Anda menunjukkan minat terhadap situasi mereka, mengumpulkan informasi untuk customize pitch, dan membangun rapport. Discovery adalah fondasi penjualan yang efektif.'},
+    C:{type:'bad',text:'Ini respons terburuk — merendahkan keputusan pembeli sebelumnya dan akan langsung menciptakan defensifitas. Tidak pernah mulai dengan membandingkan secara negatif.'}
+  },
+  sim2:{
+    A:{type:'bad',text:'Terlalu kaku dan menutup pintu negosiasi. Buyers tidak suka jawaban "tidak bisa" tanpa alternatif solusi.'},
+    B:{type:'ok',text:'Lumayan — membuka jalur volume discount. Tapi belum menyentuh root cause: mungkin CFO tidak perlu harga lebih murah, tapi butuh justifikasi nilai yang lebih kuat.'},
+    C:{type:'best',text:'Excellent! Respons ini menunjukkan empati, mengalihkan dari harga ke nilai (TCO), dan menawarkan alternatif kreatif (cicilan/bundling). Ini teknik "reframing" yang efektif untuk negosiasi harga.'}
+  },
+  sim3:{
+    A:{type:'bad',text:'Jaminan kosong tanpa bukti — justru meningkatkan skeptisisme teknisi yang sudah terbiasa dengan janji-janji yang tidak terbukti.'},
+    B:{type:'best',text:'Sempurna! Respons ini spesifik (stok lokal, lead time konkret), transparan, dan menawarkan bukti nyata (daftar spare parts). Teknisi menghargai kejujuran dan data konkret dibanding janji umum.'},
+    C:{type:'ok',text:'Jawaban ini terlalu umum dan tidak meyakinkan. Teknisi butuh detail spesifik — mana spare parts yang tersedia, berapa lead time, siapa teknisi-nya.'}
+  }
+};
+
+function simAnswer(simId,choice,type){
+  const sim=document.getElementById(simId);
+  if(sim.dataset.answered)return;
+  sim.dataset.answered='1';
+  sim.querySelectorAll('.sim-opt').forEach(o=>{
+    o.style.pointerEvents='none';
+    const oc=o.getAttribute('onclick');
+    const t=oc.match(/'(\w+)'\)$/)?.[1];
+    if(t==='best')o.classList.add('best');
+    else if(t==='ok')o.classList.add('ok');
+    else o.classList.add('bad');
+  });
+  const res=document.getElementById(simId+'-result');
+  const d=simData[simId][choice];
+  res.className='sim-result show sr-'+d.type;
+  res.textContent=d.text;
+  document.getElementById(simId+'-reset').classList.add('show');
+}
+function simReset(simId){
+  const sim=document.getElementById(simId);
+  delete sim.dataset.answered;
+  sim.querySelectorAll('.sim-opt').forEach(o=>{
+    o.style.pointerEvents='';
+    o.classList.remove('best','ok','bad');
+  });
+  document.getElementById(simId+'-result').classList.remove('show');
+  document.getElementById(simId+'-reset').classList.remove('show');
+}
+
+const qm2={
+  q1:{ok:'Benar! Pompa keramik ±1% adalah klaim teknis yang sulit ditandingi di kelas harga menengah, ditambah battery backup 30 menit yang tidak semua kompetitor miliki sebagai standar.',wrong:'Kurang tepat. Diferensiasi terkuat adalah kombinasi pompa keramik UF ±1% + battery backup 30 menit — dua fitur yang langka di segmen harga ini.'},
+  q2:{ok:'Benar! High-Flux dengan SC β2-MG ≥0.7 adalah standar untuk pasien HD jangka panjang yang berisiko dialysis-related amyloidosis — ini argumen klinis yang solid.',wrong:'Kurang tepat. Alasan klinis utama High-Flux adalah kemampuannya membersihkan toksin besar seperti β2-mikroglobulin, mencegah komplikasi jangka panjang.'},
+  q3:{ok:'Benar! Framework ABE: Acknowledge kekhawatiran → Bridge ke perspektif baru → Evidence konkret. Ini menghindari konfrontasi sekaligus memberikan fakta yang meyakinkan.',wrong:'Kurang tepat. Gunakan ABE: Acknowledge (akui kekhawatiran) → Bridge (kalimat transisi) → Evidence (bukti konkret: CE, komponen Jepang). Jangan langsung bantah atau setujui begitu saja.'},
+  q4:{ok:'Benar! Pasien BB besar butuh dializer luas besar (V-22/24HF) untuk klirens adekuat, dan High-Flux diperlukan untuk β2-MG yang terkait keluhan sendi.',wrong:'Kurang tepat. BB 90 kg → butuh luas membran besar (≥2.0 m²). Keluhan sendi/gatal → kemungkinan β2-MG tinggi → High-Flux wajib. Rekomendasi: V-22HF atau V-24HF.'},
+  q5:{ok:'Benar! Setiap meeting harus diakhiri dengan next action konkret dan tanggal yang disepakati — ini mencegah deal stagnan dan membangun momentum.',wrong:'Kurang tepat. Meninggalkan meeting tanpa next step konkret = deal yang mati perlahan. Selalu tetapkan: apa yang akan dilakukan, siapa yang melakukan, kapan.'},
+  q6:{ok:'Benar! Battery backup 30 menit adalah fitur yang langsung relevan dan terasa untuk RS di daerah dengan listrik tidak stabil — ini pain point nyata yang dipecahkan secara konkret.',wrong:'Kurang tepat. Untuk RS dengan masalah listrik, battery backup otomatis 30 menit adalah argumen paling langsung relevan dan emosional — treatment pasien tidak terganggu walau listrik padam.'}
+};
+
+function qa(el,qId,correct){
+  const q=document.getElementById(qId);
+  if(q.dataset.answered)return;
+  q.dataset.answered='1';
+  q.querySelectorAll('.qopt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    q.querySelectorAll('.qopt').forEach(o=>{
+      if(o.getAttribute('onclick')&&o.getAttribute('onclick').includes('true'))o.classList.add('correct');
+    });
+  }
+  const fb=document.getElementById('fb-'+qId);
+  fb.classList.add('show',correct?'correct':'wrong');
+  fb.textContent=correct?qm2[qId].ok:qm2[qId].wrong;
+}
+
+window.addEventListener('scroll',()=>{
+  const ss=['s1','s2','s3','s4','s5','s6','s7'];
+  const its=document.querySelectorAll('.nv');
+  let cur=0;
+  ss.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<130)cur=i;
+  });
+  its.forEach((n,i)=>n.classList.toggle('active',i===cur));
+});
+</script>
+</body>
+</html>
